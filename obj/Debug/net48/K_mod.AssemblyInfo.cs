@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("K_mod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fe99b8522f0a4b021762ce2417a23234a70280d")]
 [assembly: System.Reflection.AssemblyProductAttribute("K_mod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("K_mod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
