@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\worldbox\\Mods\\K mod\\K_mod.csproj": {}
+  },
+  "projects": {
+    "E:\\worldbox\\Mods\\K mod\\K_mod.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\worldbox\\Mods\\K mod\\K_mod.csproj",
+        "projectName": "K_mod",
+        "projectPath": "E:\\worldbox\\Mods\\K mod\\K_mod.csproj",
+        "packagesPath": "C:\\Users\\张昕宇\\.nuget\\packages\\",
+        "outputPath": "E:\\worldbox\\Mods\\K mod\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\张昕宇\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
