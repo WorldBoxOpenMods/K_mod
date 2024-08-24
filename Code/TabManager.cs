@@ -130,7 +130,7 @@ namespace K_mod
             index++;
             PowerButtons.CreateButton(
                 "spawn_Russia",
-                Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.iconArab.png"),
+                Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.iconRussia.png"),
                 "Russia",
                 "Spawn Russia",
                 new Vector2(xPos + (index * gap), yPos),

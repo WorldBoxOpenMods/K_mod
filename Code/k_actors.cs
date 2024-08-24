@@ -125,7 +125,7 @@ namespace K_mod
             var RussiaAsset = AssetManager.actor_library.clone("unit_Russia", "unit_human");
             RussiaAsset.nameLocale = "Russias";
             RussiaAsset.body_separate_part_head = true;
-            RussiaAsset.heads = 11;
+            RussiaAsset.heads = 4;
             RussiaAsset.oceanCreature = false;
             RussiaAsset.nameTemplate = "human_name";
             RussiaAsset.race = "Russia";
@@ -212,9 +212,9 @@ namespace K_mod
             Ballista.inspect_children = false;
             Ballista.canBeMovedByPowers = true;
             Ballista.canBeHurtByPowers = true;
-            Ballista.canTurnIntoZombie = true;
+            Ballista.canTurnIntoZombie = false;
             Ballista.can_edit_traits = false;
-            Ballista.canBeCitizen = true;
+            Ballista.canBeCitizen = false;
             Ballista.updateZ = true;
             Ballista.effectDamage = true;
             Ballista.canFlip = true;
@@ -223,11 +223,11 @@ namespace K_mod
             Ballista.hideOnMinimap = true;
             Ballista.needFood = false;
             Ballista.diet_meat = false;
-            Ballista.deathAnimationAngle = true;
+            Ballista.deathAnimationAngle = false;
             Ballista.take_items = false;
             Ballista.use_items = false;
             Ballista.disablePunchAttackAnimation = true;
-            Ballista.base_stats[S.speed] = 20f;
+            Ballista.base_stats[S.speed] = 40f;
             Ballista.base_stats[S.health] = 90f;
             Ballista.base_stats[S.size] = 0.5f;
             Ballista.base_stats[S.critical_chance] = 0.1f;

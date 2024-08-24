@@ -166,7 +166,7 @@ public class K_harmony_actors
     }
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BehGoToActorTarget), "execute")]
-    public static bool execute(BehGoToActorTarget __instance,Actor pActor, ref BehResult __result)
+    public static bool execute(BehGoToActorTarget __instance, Actor pActor, ref BehResult __result)
     {
         WorldTile pTile = pActor.beh_actor_target.currentTile;
         string text = __instance.type;
@@ -187,15 +187,49 @@ public class K_harmony_actors
         if (pActor.goTo(pTile, __instance.pathOnWater, false) == ExecuteEvent.True)
         {
             float TDJL = Toolbox.DistTile(pTile, pActor.currentTile);
-            if (pActor.hasStatus("effect_cavalry")&&TDJL is > 4f)
+            if (pActor.hasStatus("effect_cavalry") && TDJL is > 4f)
             {
-                pActor.addStatusEffect("charge",3f);
+                pActor.addStatusEffect("charge", 3f);
             }
             __result = BehResult.Continue;
             return false;
         }
         pActor.ignoreTarget(pActor.beh_actor_target);
         __result = BehResult.Stop;
+        return true;
+    }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ActorBase), "checkSpriteHead")]
+    public static bool checkSpriteHead(ActorBase __instance)
+    {
+        if (!__instance.dirty_sprite_head)
+        {
+            return true;
+        }
+
+        if (!__instance.asset.body_separate_part_head)
+        {
+            return true;
+        }
+        if (__instance.tryToLoadFunHead())
+        {
+            return true;
+        }
+        if (!__instance.asset.unit)
+        {
+            return true;
+        }
+        string text;
+        string pPath;
+        if (__instance.data.profession == UnitProfession.Warrior && !__instance.equipment.helmet.isEmpty() && __instance.asset.race == "Russia")
+        {
+            int i = Toolbox.randomInt(1, 5);
+            text = $"head_warrior{i}";
+            pPath = "actors/races/" + __instance.asset.race + "/heads_special";
+            __instance.setHeadSprite(ActorAnimationLoader.getHeadSpecial(pPath, text));
+            __instance.dirty_sprite_head = false;
+            return false;
+        }
         return true;
     }
 }

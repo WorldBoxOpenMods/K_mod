@@ -133,21 +133,21 @@ namespace K_mod
                     {
                         string Base_Building = SB.tent_human;
                         bool flag = false;
-                        if (buildingType.Item1 == "house") { flag = true; Base_Building = SB.house_human_0; }
-                        if (buildingType.Item1 == "1house") { flag = true; Base_Building = SB.house_human_1; }
-                        if (buildingType.Item1 == "2house") { flag = true; Base_Building = SB.house_human_2; }
+                        if (buildingType.Item1 == "house") { Base_Building = SB.house_human_0; }
+                        if (buildingType.Item1 == "1house") { Base_Building = SB.house_human_1; }
+                        if (buildingType.Item1 == "2house") { Base_Building = SB.house_human_2; }
                         if (buildingType.Item1 == "3house") {  Base_Building = SB.house_human_3; }
                         if (buildingType.Item1 == "4house") { Base_Building = SB.house_human_4; }
                         if (buildingType.Item1 == "5house") { Base_Building = SB.house_human_5; }
                         if (buildingType.Item1 == "hall") { Base_Building = SB.hall_human_0; }
                         if (buildingType.Item1 == "1hall") { Base_Building = SB.hall_human_1; }
                         if (buildingType.Item1 == "2hall") { Base_Building = SB.hall_human_2; }
-                        if (buildingType.Item1 == "fishing_docks") { flag = true; Base_Building = SB.fishing_docks_human; }
+                        if (buildingType.Item1 == "fishing_docks") { Base_Building = SB.fishing_docks_human; }
                         else if (buildingType.Item1 == "windmill_1") { Base_Building = SB.windmill_human_1; }
                         if (buildingType.Item1 == "windmil_0") { Base_Building = SB.windmill_human_0; }
                         var buildingFundament = buildingType.Item3;
                         var building_base = AssetManager.buildings.get(Base_Building);
-                        if (building_base != null && !flag)
+                        if (building_base != null)
                         {
                             var building = AssetManager.buildings.clone($"{buildingType.Item1}_{race}", Base_Building);
                             building.race = race;
@@ -166,26 +166,6 @@ namespace K_mod
                                 building.canBeUpgraded = false;
                             }
                             AssetManager.buildings.loadSprites(building);
-                        }
-                        else if (flag)
-                        {
-                            var building = AssetManager.buildings.clone($"{buildingType.Item1}_{race}", Base_Building);
-                            building.race = race;
-                            building.fundament = buildingFundament;
-                            building.cost = buildingType.Item4;
-                            building.draw_light_area = true;
-                            
-
-                            if (!String.IsNullOrEmpty(buildingType.Item2))
-                            {
-                                building.canBeUpgraded = true;
-                                building.upgradeTo = $"{buildingType.Item2}_{race}";
-                            }
-                            else
-                            {
-                                building.canBeUpgraded = false;
-                            }
-                            // AssetManager.buildings.loadSprites(building);
                         }
                     }
                 }

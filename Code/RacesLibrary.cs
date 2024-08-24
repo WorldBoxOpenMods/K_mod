@@ -229,7 +229,7 @@ namespace K_mod
             Russia.civ_baseCities = 3;
             Russia.civ_base_army_mod = 1.6f;
             Russia.build_order_id = "kingdom_base";
-            Russia.path_icon = "ui/Icons/iconArab";
+            Russia.path_icon = "ui/Icons/iconRussia";
             Russia.nameLocale = "Russia";
             Russia.banner_id = "human";
             Russia.main_texture_path = "races/Russia/";
@@ -246,27 +246,27 @@ namespace K_mod
             Russia.production = new string[] { "bread", "pie", "tea" };
             Russia.skin_citizen_male = List.Of<string>(new string[] {
             "unit_male_1",
-            // "unit_male_2",
-            // "unit_male_3",
-            // "unit_male_4",
-            // "unit_male_5",
-            // "unit_male_6",
-            // "unit_male_7",
-            // "unit_male_8",
-            // "unit_male_9",
-            // "unit_male_10"
+            "unit_male_2",
+            "unit_male_3",
+            "unit_male_4",
+            "unit_male_5",
+            "unit_male_6",
+            "unit_male_7",
+            "unit_male_8",
+            "unit_male_9",
+            "unit_male_10"
             });//"unit_male_0",
             Russia.skin_citizen_female = List.Of<string>(new string[] {
             "unit_female_1",
-            // "unit_female_2",
-            // "unit_female_3",
-            // "unit_female_4",
-            // "unit_female_5",
-            // "unit_female_6",
-            // "unit_female_7",
-            // "unit_female_8",
-            // "unit_female_9",
-            //"unit_female_10"
+            "unit_female_2",
+            "unit_female_3",
+            "unit_female_4",
+            "unit_female_5",
+            "unit_female_6",
+            "unit_female_7",
+            "unit_female_8",
+            "unit_female_9",
+            "unit_female_10"
             });
             Russia.skin_warrior = List.Of<string>(new string[] {
             "unit_warrior_3",
@@ -286,27 +286,27 @@ namespace K_mod
             AssetManager.raceLibrary.CallMethod("addPreferredWeapon", "sword", 10);
             AssetManager.raceLibrary.CallMethod("addPreferredWeapon", "bow", 15);
             AssetManager.raceLibrary.CallMethod("addPreferredWeapon", "crossbow", 10);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_tent, "tent_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_0, "house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_1, "1house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_2, "2house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_3, "3house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_4, "4house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_5, "5house_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_0, "hall_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_1, "1hall_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_2, "2hall_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_windmill_0, SB.windmill_human_0);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_windmill_1, SB.windmill_human_1);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_docks_0, "fishing_docks_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_docks_1, "docks_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_watch_tower, "watch_tower_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_barracks, "barracks_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_temple, "temple_Russia");
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_statue, SB.statue);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_well, SB.well);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_bonfire, SB.bonfire);
-            // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_mine, SB.mine);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_tent, "tent_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_0, "house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_1, "1house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_2, "2house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_3, "3house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_4, "4house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_5, "5house_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_0, "hall_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_1, "1hall_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_hall_2, "2hall_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_windmill_0, SB.windmill_human_0);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_windmill_1, SB.windmill_human_1);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_docks_0, "fishing_docks_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_docks_1, "docks_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_watch_tower, "watch_tower_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_barracks, "barracks_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_temple, "temple_Russia");
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_statue, SB.statue);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_well, SB.well);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_bonfire, SB.bonfire);
+            AssetManager.raceLibrary.addBuildingOrderKey(SB.order_mine, SB.mine);
             // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_tent, SB.tent_human);
             // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_0, SB.house_human_0);
             // AssetManager.raceLibrary.addBuildingOrderKey(SB.order_house_1, SB.house_human_1);
