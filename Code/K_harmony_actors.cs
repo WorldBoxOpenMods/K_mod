@@ -153,15 +153,60 @@ public class K_harmony_actors
         // actor.animationContainer = ActorAnimationLoader.loadAnimationUnit(AnimationTexture, actor.asset);
         // }
     }
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Actor), "isInAttackRange")]
-    public static void isInAttackRange(Actor __instance, BaseSimObject pObject, ref bool __result)
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(Actor), "isInAttackRange")]
+    // public static void isInAttackRange(Actor __instance, BaseSimObject pObject, ref bool __result)
+    // {
+    //     if (pObject.a.Any() && pObject.a.hasStatus("effect_cavalry"))
+    //     {
+    //         __result = Toolbox.DistVec3(__instance.currentPosition, pObject.currentPosition) < __instance.stats[S.range] + pObject.stats[S.size] + 10f;
+    //     }
+    // }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BaseSimObject), "findEnemyObjectTarget")]
+    public static bool findEnemyObjectTarget(BaseSimObject __instance, ref BaseSimObject __result)
     {
-        if (pObject.a.Any() && pObject.a.hasStatus("effect_cavalry"))
+        bool pFindClosest = Toolbox.randomChance(0.6f);
+        EnemyFinderData enemyFinderData = EnemiesFinder.findEnemiesFrom(__instance.currentTile, __instance.kingdom, -1);
+        if (enemyFinderData.list == null)
         {
-            __result = Toolbox.DistVec3(__instance.currentPosition, pObject.currentPosition) < __instance.stats[S.range] + pObject.stats[S.size] + 10f;
+            __result= null;
+            return false;
         }
+
+        BaseSimObject result = null;
+        float searchRange = 20f; // 设置扩大索敌范围时的搜索半径
+        if(__instance.hasStatus("effect_cavalry"))
+        {
+            searchRange=100f;
+        }
+
+        foreach (BaseSimObject enemy in enemyFinderData.list)
+        {
+            if (enemy.isAlive() && enemy != __instance && __instance.canAttackTarget(enemy) && (!__instance.isActor() || __instance.a.s_attackType != WeaponType.Melee || enemy.currentTile.isSameIsland(__instance.currentTile) || (!enemy.currentTile.Type.block && __instance.currentTile.region.island.isConnectedWith(enemy.currentTile.region.island))) && (!enemy.isBuilding() || !__instance.kingdom.isCiv() || !enemy.b.asset.cityBuilding || enemy.b.asset.tower || enemy.kingdom.race != __instance.kingdom.race) && !__instance.shouldIgnoreTarget(enemy))
+            {
+                float distance = Toolbox.DistTile(enemy.currentTile, __instance.currentTile);
+
+                if (!pFindClosest)
+                {
+                    result = enemy;
+                    break;
+                }
+
+                if (distance < searchRange) // 根据搜索范围判断是否在索敌范围内
+                {
+                    if (result == null || distance < Toolbox.DistTile(result.currentTile, __instance.currentTile))
+                    {
+                        result = enemy;
+                    }
+                }
+            }
+        }
+
+        __result= result;
+        return false;
     }
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BehGoToActorTarget), "execute")]
     public static bool execute(BehGoToActorTarget __instance, Actor pActor, ref BehResult __result)

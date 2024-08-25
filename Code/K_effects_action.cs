@@ -134,7 +134,7 @@ namespace K_mod
                     a.goTo(a.attackTarget.currentTile, true, true);
                     a.tileTarget = a.attackTarget.currentTile;
                     a.addStatusEffect("charge");
-                    a.attackTarget.getHit((int)(a.stats[S.damage] * 0.6 + (int)(a.stats[S.armor] * 0.3)), true, AttackType.Block, a, true, false);
+                    a.attackTarget.a.getHit((int)(a.stats[S.damage] * 0.6 + (int)(a.stats[S.armor] * 0.3)), true, AttackType.Block, a, true, false);
                     if (a.animationContainer != null)
                     {
                         a.animationContainer.idle.id = 1;
