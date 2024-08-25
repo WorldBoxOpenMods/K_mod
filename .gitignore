@@ -364,3 +364,12 @@ FodyWeavers.xsd
 /中文名-v*.zip
 obj/Debug/net48/K_mod.AssemblyInfo.cs
 obj/Debug/net48/K_mod.AssemblyInfoInputs.cache
+obj/Debug/net48/K_mod.AssemblyInfoInputs.cache
+obj/Debug/net48/K_mod.AssemblyInfo.cs
+obj/Debug/net48/K_mod.AssemblyInfoInputs.cache
+obj/Debug/net48/K_mod.csproj.AssemblyReference.cache
+obj/Debug/net48/K_mod.assets.cache
+obj/Debug/net48/K_mod.GeneratedMSBuildEditorConfig.editorconfig
+obj/project.nuget.cache
+obj/project.assets.json
+obj/K_mod.csproj.nuget.dgspec.json

@@ -7,7 +7,7 @@ namespace K_mod.K_items
 {
     class Rome
     {
-        [Obsolete]
+        
         public static void init()
         {
             // 初始化装备
@@ -17,7 +17,7 @@ namespace K_mod.K_items
             InitializeWeapons();
         }
 
-        [Obsolete]
+        
         private static void InitializeArmors()
         {
             // 铁铠装备
@@ -41,7 +41,7 @@ namespace K_mod.K_items
             ItemAsset romanHelmet = CreateAndAddArmor("RomanHelmet", "iron", 5, 5, 60, 0f, 60, 10);
         }
 
-        [Obsolete]
+        
         private static ItemAsset CreateAndAddArmor(string id, string material, int cost1, int cost2, int value, float reduction, int health, int armor)
         {
             ItemAsset Armor = AssetManager.items.clone(id, "_equipment");
@@ -60,7 +60,7 @@ namespace K_mod.K_items
             return Armor;
         }
 
-        [Obsolete]
+        
         private static void InitializeWeapons()
         {
 
@@ -132,7 +132,7 @@ namespace K_mod.K_items
         //   MapAction.checkSantaHit(pTile.pos, pRad);
         //   MapAction.checkUFOHit(pTile.pos, pRad);
         // }
-        [Obsolete]
+        
         public static bool armorPiercingCrossbowAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -150,7 +150,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool Continuous_firing(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pSelf != null)
@@ -167,7 +167,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool burn(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -185,7 +185,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool crossbowAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -203,7 +203,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool HeavyWeaponsAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             // if (pSelf !== null)
@@ -223,7 +223,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static void addItemSprite(string id, string material)
         {
             var dictItems = Reflection.GetField(typeof(ActorAnimationLoader), null, "dictItems") as Dictionary<string, Sprite>;

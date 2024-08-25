@@ -6,7 +6,7 @@ namespace K_mod
 {
     class Traits
     {
-        [Obsolete]
+        
         public static void init()
         {
             ActorTrait 防御 = new()
@@ -103,7 +103,7 @@ namespace K_mod
             canTame.action_special_effect = (WorldAction)Delegate.Combine(canTame.action_special_effect, new WorldAction(canTameEffect));
         }
 
-        [Obsolete]
+        
         public static bool canTameEffect(BaseSimObject pTarget, WorldTile pTile = null)
         {
             Actor horse = Reflection.GetField(pTarget.GetType(), pTarget, "a") as Actor;
@@ -136,7 +136,7 @@ namespace K_mod
             return true;
         }
 
-        [Obsolete]
+        
         private static void addTraitToLocalizedLibrary(string pLanguage, string id, string description, string name)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;

@@ -10,7 +10,7 @@ namespace K_mod
         public static Dictionary<string, GameObject> windowContents = new();
         public static Dictionary<string, ScrollWindow> createdWindows = new();
 
-        [Obsolete]
+        
         public static void init()
         {
             newWindow("EquipmentAdditionWindow", "装备添加");
@@ -25,7 +25,7 @@ namespace K_mod
             // ItemTypeWindow.init();
         }
 
-        [Obsolete]
+        
         private static void newWindow(string id, string title)
         {
             ScrollWindow window;

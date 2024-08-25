@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gvqnYlEZDjc=",
+  "dgSpecHash": "5OtoOt40IrM=",
   "success": true,
-  "projectFilePath": "E:\\worldbox\\Mods\\K mod\\K_mod.csproj",
+  "projectFilePath": "E:\\worldbox\\Mods\\K_mod_master\\K_mod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\张昕宇\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
     "C:\\Users\\张昕宇\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net48\\1.0.3\\microsoft.netframework.referenceassemblies.net48.1.0.3.nupkg.sha512"

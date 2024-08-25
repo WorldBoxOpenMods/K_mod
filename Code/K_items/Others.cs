@@ -7,7 +7,7 @@ namespace K_mod.K_items
 {
     class Others
     {
-        [Obsolete]
+        
         public static void init()
         {
 
@@ -162,7 +162,7 @@ namespace K_mod.K_items
         //   MapAction.checkSantaHit(pTile.pos, pRad);
         //   MapAction.checkUFOHit(pTile.pos, pRad);
         // }
-        [Obsolete]
+        
         public static bool armorPiercingCrossbowAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -180,7 +180,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool Continuous_firing(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pSelf != null)
@@ -197,7 +197,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool burn(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -215,7 +215,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool crossbowAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             if (pTarget != null)
@@ -233,7 +233,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static bool HeavyWeaponsAttack(BaseSimObject pSelf, BaseSimObject pTarget, WorldTile pTile = null)
         {
             // if (pSelf !== null)
@@ -253,7 +253,7 @@ namespace K_mod.K_items
             return true;
         }
 
-        [Obsolete]
+        
         public static void addItemSprite(string id, string material)
         {
             var dictItems = Reflection.GetField(typeof(ActorAnimationLoader), null, "dictItems") as Dictionary<string, Sprite>;

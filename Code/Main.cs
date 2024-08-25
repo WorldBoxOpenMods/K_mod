@@ -15,21 +15,21 @@ using UnityEngine.Events;
 namespace K_mod
 {
     [ModEntry]
-    [System.Obsolete]
+
     class Main : MonoBehaviour
     {
         public static bool KmodLoad = false;
-        public k_actors moreActors = new();
+        public K_actors moreActors = new();
         public RacesLibrary RacesLibrary = new();
         public MoreKingdoms moreKingdoms = new();
-        public k_buildings moreBuildings = new();
+        public K_buildings moreBuildings = new();
         public k_buildingsLibrary buildingLibrary = new();
         public static List<Actor> Rider = new();
         public static List<Actor> Horse = new();
         public static Dictionary<string, string> Friendlybonds = new() { { "orc", "wolf" }, { "dwarf", "rhino" } };
-        public static Dictionary<string, UnityAction<Actor, k_action>> KActions = new();
-        public static Dictionary<Actor, List<k_action>> Actor_Action = new();
-        public static List<k_action> k_actions = new();
+        public static Dictionary<string, UnityAction<Actor, K_action>> KActions = new();
+        public static Dictionary<Actor, List<K_action>> Actor_Action = new();
+        public static List<K_action> k_actions = new();
         public static Dictionary<Actor, float> Rider_z = new();
         public static Dictionary<Actor, float> Rider_x = new();
         public static Dictionary<Actor, Actor> Rider_horse = new();
@@ -40,21 +40,21 @@ namespace K_mod
             "Rome","Arab","Russia"
             };
 
-        [System.Obsolete]
+
         void Awake()
         {
             Dictionary<string, ScrollWindow> allWindows = (Dictionary<string, ScrollWindow>)Reflection.GetField(typeof(ScrollWindow), null, "allWindows");
-            _ = Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "inspect_unit");
+            Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "inspect_unit");
             allWindows["inspect_unit"].gameObject.SetActive(false);
-            _ = Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "village");
+            Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "village");
             allWindows["village"].gameObject.SetActive(false);
-            _ = Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "debug");
+            Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "debug");
             allWindows["debug"].gameObject.SetActive(false);
-            _ = Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "kingdom");
+            Reflection.CallStaticMethod(typeof(ScrollWindow), "checkWindowExist", "kingdom");
             allWindows["kingdom"].gameObject.SetActive(false);
+            Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "Rome");
 
             //建筑
-            Buildings.init();
             moreBuildings.init();
             buildingLibrary.init();
             //种族
@@ -70,7 +70,6 @@ namespace K_mod
             K_items.Others.init();
             //其他
             K_Job.init();
-            K_Drop.init();
             trait_group.init();
             Traits.init();
             //ui
@@ -79,26 +78,14 @@ namespace K_mod
             NewUI.init();
             WindowManager.init();
 
-            k_action.init();
-            //翻译————吾生最大败笔
+            K_action.init();
             translation.init();
 
-            Harmony.CreateAndPatchAll(typeof(Patcher));
+            Harmony.CreateAndPatchAll(typeof(Main));
+
+            Harmony.CreateAndPatchAll(typeof(K_harmony_city));
+            Harmony.CreateAndPatchAll(typeof(K_harmony_other));
             Harmony.CreateAndPatchAll(typeof(K_harmony_actors));
-
-
-
-        }
-
-        [System.Obsolete]
-        void Start()
-        {
-
-            _ = Reflection.CallStaticMethod(typeof(BannerGenerator), "loadTexturesFromResources", "Rome");
-            _ = Harmony.CreateAndPatchAll(typeof(Main));
-            Harmony.CreateAndPatchAll(typeof(Patcher_warfare));
-
-
 
         }
         public void Update()
@@ -112,61 +99,16 @@ namespace K_mod
                 Horse_rider.Clear();
                 return;
             }
-            for (int i = 0; i < Rider.Count; i++)
-            {
-                Actor rider = Rider[i];
-                Actor horse = Rider_horse[rider];
-                rider.setShowShadow(false);
-                if (horse != null && rider != null && horse.data != null && rider.data != null
-                    && horse.data.alive && rider.data.alive && horse.isAlive() && rider.isAlive())
-                {
-                    horse.curTransformPosition = new Vector3(rider.curTransformPosition.x, rider.curTransformPosition.y - Rider_z[rider]);
-                    horse.transform.position = new Vector3(rider.transform.position.x, rider.transform.position.y - Rider_z[rider]);
-                    horse.currentPosition = rider.currentPosition;
-                    horse.currentTile = rider.currentTile;
-                }
-                else { Dismount_horse(rider); }
-            }
-            for (int i = 0; i < Horse.Count; i++)
-            {
-                Actor horse = Horse[i];
-                Actor rider = Horse_rider[horse];
-                rider.setShowShadow(false);
-                if (horse != null && rider != null && horse.data != null && rider.data != null
-                    && horse.data.alive && rider.data.alive && horse.isAlive() && rider.isAlive())
-                {
-                    horse.curTransformPosition = new Vector3(rider.curTransformPosition.x, rider.curTransformPosition.y - Rider_z[rider]);
-                    horse.transform.position = new Vector3(rider.transform.position.x, rider.transform.position.y - Rider_z[rider]);
-                    horse.currentPosition = rider.currentPosition;
-                    horse.currentTile = rider.currentTile;
-                }
-                else { Dismount_rider(horse); }
-            }
-            foreach (var actor in World.world.units.getSimpleList())
-            {
-                UpdateActor(actor);
-            }
+
             bool paused = World.world.isPaused();
-            k_update.update_actions(paused);
+            K_update.update_actions(paused);
+            K_update.update_horse(paused);
         }
 
-        public void UpdateActor(Actor pActor)
-        {
-            if (pActor == null || !pActor.isAlive()) { return; }
-
-            if (pActor.asset.unit)
-            {
-                if (pActor != null && pActor.hasStatus("effect_cavalry") && pActor.data.profession != UnitProfession.Warrior)
-                {
-                    pActor.removeStatusEffect("effect_cavalry");
-                }
-            }
-            
-        }
-        public static k_action NewAction(Actor a, KActionSave pSave)
+        public static K_action NewAction(Actor a, KActionSave pSave)
         {
             if (!a.Any()) { return null; }
-            k_action pAction = NewAction(pSave.id, a, pSave.interval, pSave.intervals, pSave.time, pSave.paused_);
+            K_action pAction = NewAction(pSave.id, a, pSave.interval, pSave.intervals, pSave.time, pSave.paused_);
             for (int n = 0; n < pSave.statsId.Count; n++)
             {
                 pAction.stats[pSave.statsId[n]] = pSave.statsValue[n];
@@ -176,10 +118,10 @@ namespace K_mod
             pAction.textures.AddRange(pSave.textures);
             return pAction;
         }
-        public static k_action NewAction(string id, Actor a, float interval = 100f, float intervals = 100f, float time = -1f, bool paused = true)
+        public static K_action NewAction(string id, Actor a, float interval = 100f, float intervals = 100f, float time = -1f, bool paused = true)
         {
             if (!a.Any()) { return null; }
-            List<k_action> actions = k_actions;
+            List<K_action> actions = k_actions;
             bool flag = Actor_Action.ContainsKey(a);
             if (flag)
             {
@@ -190,7 +132,7 @@ namespace K_mod
             bool flag3 = time >= 0f && time != float.MaxValue;
             for (int i = 0; i < actions.Count; i++)
             {
-                k_action action = actions[i];
+                K_action action = actions[i];
                 if (!action.destroy && action.id == id && action.a == a)
                 {
                     action.intervals = intervals;
@@ -214,7 +156,7 @@ namespace K_mod
                     return action;
                 }
             }
-            k_action New = new()
+            K_action New = new()
             {
                 a = a,
                 id = id,
@@ -242,14 +184,14 @@ namespace K_mod
             {
                 Actor_Action[a].Add(New);
             }
-            else { Actor_Action.Add(a, new List<k_action> { New }); }
+            else { Actor_Action.Add(a, new List<K_action> { New }); }
             a.setStatsDirty();
             return New;
         }
-        public static k_action NewAnimation(string id, Actor a, float pSpeed, List<string> textures, bool paused = true)
+        public static K_action NewAnimation(string id, Actor a, float pSpeed, List<string> textures, bool paused = true)
         {
             if (!a.Any()) { return null; }
-            k_action New = NewAction(id, a, pSpeed, pSpeed, -1f, paused);
+            K_action New = NewAction(id, a, pSpeed, pSpeed, -1f, paused);
             New.textures = textures;
             New.animation = true;
             return New;
@@ -275,9 +217,9 @@ namespace K_mod
                 if (Horse_rider.ContainsKey(horse) || Horse.Contains(horse)) { Dismount_rider(horse); }
                 if (Rider_horse.ContainsKey(rider) || Rider_z.ContainsKey(rider)
                 || Rider.Contains(rider)) { Dismount_horse(rider); }
-                if ((Horse_rider.ContainsKey(rider) || Horse.Contains(rider))) { Dismount_rider(rider); }
-                if ((Rider_horse.ContainsKey(horse) || Rider_z.ContainsKey(horse)
-                || Rider.Contains(horse))) { Dismount_horse(horse); }
+                if (Horse_rider.ContainsKey(rider) || Horse.Contains(rider)) { Dismount_rider(rider); }
+                if (Rider_horse.ContainsKey(horse) || Rider_z.ContainsKey(horse)
+                || Rider.Contains(horse)) { Dismount_horse(horse); }
                 Rider.Add(rider);
                 Horse.Add(horse);
                 Rider_z.Add(rider, Zts);
@@ -385,7 +327,7 @@ namespace K_mod
                         {
                             goto IL_84;
                         }
-                        if (pRadius == 0 || DistTile(baseSimObject.currentTile, pTile) <= (float)pRadius)
+                        if (pRadius == 0 || DistTile(baseSimObject.currentTile, pTile) <= pRadius)
                         {
                             temp_map_objects.Add(baseSimObject);
                         }
@@ -397,16 +339,9 @@ namespace K_mod
         }
         public static float DistTile(WorldTile pT1, WorldTile pT2)
         {
-            return Mathf.Sqrt((((float)pT1.x - (float)pT2.x) * ((float)pT1.x - (float)pT2.x) + ((float)pT1.y - (float)pT2.y) * ((float)pT1.y - (float)pT2.y)));
+            return Mathf.Sqrt((pT1.x - (float)pT2.x) * (pT1.x - (float)pT2.x) + (pT1.y - (float)pT2.y) * (pT1.y - (float)pT2.y));
         }
 
-        [System.Obsolete]
-        public static void Button_Powers_Click()
-        {
-            var AdditionalTab = NCMS.Utils.GameObjects.FindEvenInactive("Tab_Additional_ride");
-            var AdditionalPowersTab = AdditionalTab.GetComponent<PowersTab>();
-            AdditionalPowersTab.showTab(AdditionalPowersTab.powerButton);
-        }
         public static ExecuteEvent goTo(Actor actor, WorldTile target, bool pPathOnLiquid = false, bool pWalkOnBlocks = false)
         {
             if (target == null) { return ExecuteEvent.False; }
@@ -454,7 +389,7 @@ namespace K_mod
                 World.world.pathfindingParam.ocean = true;
             }
             World.world.pathfindingParam.ground = actor.asset.landCreature;
-            World.world.pathfindingParam.boat = (actor.asset.isBoat && actor.currentTile.isGoodForBoat());
+            World.world.pathfindingParam.boat = actor.asset.isBoat && actor.currentTile.isGoodForBoat();
             World.world.pathfindingParam.limit = true;
             if (!PathfinderTools.tryToGetSimplePath(actor.currentTile, target, actor.current_path, actor.asset, World.world.pathfindingParam))
             {
@@ -565,117 +500,8 @@ namespace K_mod
             if (pButtons.Count > 1) { return false; }
             return true;
         }
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Actor), "checkSpriteToRender")]
-        public static void checkSpriteToRender(Actor __instance, ref Sprite __result)
-        {
-            if (Rider.Contains(__instance))
-            {
-                Sprite sprite = __instance.animationContainer.idle.frames[0];
-                if (__instance._last_main_sprite != sprite || __instance._last_color_asset != __instance.kingdom.kingdomColor)
-                {
-                    __instance.frame_data = __instance.animationContainer.dict_frame_data[sprite.name];
-                    __instance._last_colored_sprite = UnitSpriteConstructor.getSpriteUnit(__instance.frame_data, sprite, __instance, __instance.kingdom.kingdomColor, __instance.race, __instance.data.skin_set, __instance.data.skin, __instance.asset.texture_atlas);
-                    __instance._last_main_sprite = sprite;
-                    __instance._last_color_asset = __instance.kingdom.kingdomColor;
-                    __instance.spriteRenderer.sprite = __instance._last_colored_sprite;
-                }
-                __result = __instance._last_colored_sprite;
-            }
-        }
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(ActorMove), "goTo")]
-        public static bool goTo_ActorMove_Prefix(Actor actor, WorldTile target, ref ExecuteEvent __result, bool pPathOnLiquid = false, bool pWalkOnBlocks = false)
-        {
-            if (Horse.Contains(actor) && Horse_rider.ContainsKey(actor)
-            && actor.hasTrait("驯服_Tame"))
-            {
-                __result = goTo(actor, Horse_rider[actor].tileTarget, pPathOnLiquid, pWalkOnBlocks);
-                Horse_rider[actor].setFlip(actor.flip);
-                return false;
-            }
-            return true;
-        }
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(ActorMove), "goTo")]
-        public static void goTo_ActorMove_Postfix(Actor actor, WorldTile target, ref ExecuteEvent __result, bool pPathOnLiquid = false, bool pWalkOnBlocks = false)
-        {
-            if (Rider.Contains(actor) && Rider_horse.ContainsKey(actor)
-            && Rider_horse[actor].hasTrait("驯服_Tame"))
-            {
-                __result = goTo(Rider_horse[actor], target, pPathOnLiquid, pWalkOnBlocks);
-                actor.setFlip(Rider_horse[actor].flip);
-            }
-        }
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Actor), "updatePos")]
-        public static void updatePos(Actor __instance)
-        {
-            if (Rider.Contains(__instance) && Rider_horse.ContainsKey(__instance))
-            {
-                Actor rider = __instance;
-                Actor horse = Rider_horse[rider];
-                rider.setShowShadow(false);
-                if (horse != null && rider != null && horse.data != null && rider.data != null
-                && horse.data.alive && rider.data.alive && horse.isAlive() && rider.isAlive() && !rider.is_inside_building)
-                {
-                    horse.curTransformPosition = new Vector3(rider.curTransformPosition.x, rider.curTransformPosition.y - Rider_z[rider]);
-                    horse.transform.position = new Vector3(rider.transform.position.x, rider.transform.position.y - Rider_z[rider]);
-                    horse.currentPosition = rider.currentPosition;
-                    horse.currentTile = rider.currentTile;
-                }
-                else { Dismount_horse(rider); }
-            }
-            if (Horse.Contains(__instance) && Horse_rider.ContainsKey(__instance))
-            {
-                Actor horse = __instance;
-                Actor rider = Horse_rider[horse];
-                rider.setShowShadow(false);
-                if (horse != null && rider != null && horse.data != null && rider.data != null
-                && horse.data.alive && rider.data.alive && horse.isAlive() && rider.isAlive() && !rider.is_inside_building)
-                {
-                    horse.curTransformPosition = new Vector3(rider.curTransformPosition.x, rider.curTransformPosition.y - Rider_z[rider]);
-                    horse.transform.position = new Vector3(rider.transform.position.x, rider.transform.position.y - Rider_z[rider]);
-                    horse.currentPosition = rider.currentPosition;
-                    horse.currentTile = rider.currentTile;
-                }
-                else { Dismount_rider(horse); }
-            }
-        }
 
-        [System.Obsolete]
-        public static bool hasMod(string mod)
-        {
-            string[] directories = Directory.GetDirectories(Core.NCMSModsPath);
-            string[] files = Directory.GetFiles(Core.NCMSModsPath);
-            foreach (string text in files)
-            {
-                if (text.ToLower().EndsWith(".mod") || text.ToLower().EndsWith(".zip"))
-                {
-                    ZipArchive zipArchive = ZipFile.OpenRead(text);
-                    foreach (ZipArchiveEntry zipArchiveEntry in zipArchive.Entries)
-                    {
-                        if (zipArchiveEntry.Name == "mod.json")
-                        {
-                            using (StreamReader streamReader = new(zipArchiveEntry.Open()))
-                            {
-                                string json = streamReader.ReadToEnd();
-                                NCMod mods = JsonConvert.DeserializeObject<NCMod>(json);
-                                if ((string)mods.name == mod) { return true; }
-                            }
-                        }
-                    }
-                }
-            }
-            for (int i = 0; i < directories.Length; i++)
-            {
-                string path = directories[i];
-                string json = File.ReadAllText(path + "/mod.json");
-                NCMod mods = JsonConvert.DeserializeObject<NCMod>(json);
-                if ((string)mods.name == mod) { return true; }
-            }
-            return false;
-        }
+
         public static bool PVZRangeDamage(WorldTile pTile, float pDamage, int f, AttackType pType, BaseSimObject pAttacker = null, WorldAction action = null)
         {
             bool attack = false;
@@ -683,7 +509,7 @@ namespace K_mod
             for (int i = 0; i < temp_map_objects.Count; i++)
             {
                 bool isEnemy = true;
-                BaseSimObject pObj = (BaseSimObject)temp_map_objects[i];
+                BaseSimObject pObj = temp_map_objects[i];
                 if (pAttacker != null && pAttacker.kingdom != null)
                 {
                     isEnemy = pAttacker.kingdom.isEnemy(pObj.kingdom);
@@ -700,7 +526,7 @@ namespace K_mod
 
         public static class translationTools
         {
-            [System.Obsolete]
+
             public static void easyTranslate(string pLanguage, string id, string name)
             {
                 string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
@@ -715,7 +541,7 @@ namespace K_mod
                 Localization.addLocalization(id, name);
             }
 
-            [System.Obsolete]
+
             public static void easyTranslateWithDescription(string pLanguage, string id, string name)
             {
                 string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;

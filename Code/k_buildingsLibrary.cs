@@ -20,7 +20,7 @@ namespace K_mod
             return AssetManager.buildings.get(pID);
         }
 
-        [Obsolete]
+        
         private void loadRaceBuildings()
         {
 
@@ -245,7 +245,7 @@ namespace K_mod
 
         private static Dictionary<string, Sprite[]> cached_sprite_list;
 
-        [Obsolete]
+        
         internal static void loadSprites(BuildingAsset pTemplate)
         {
             if (cached_sprite_list is null)

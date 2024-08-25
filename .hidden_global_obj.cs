@@ -7,7 +7,7 @@ namespace K_mod
 {
     internal class Mod
     {
-        [Obsolete]
+        
         public static ModDeclaration.Info Info;
         public static GameObject GameObject;
         public static System.Action OnDebug;

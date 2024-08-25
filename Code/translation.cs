@@ -6,7 +6,7 @@ namespace K_mod
 {
     class translation
     {
-        [System.Obsolete]
+        
         public static void init()
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
@@ -196,7 +196,7 @@ namespace K_mod
             AssetManager.nameGenerator.add(Ballista_name);
         }
 
-        [System.Obsolete]
+        
         public static void easyTranslate(string pLanguage, string id, string name)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
@@ -212,7 +212,7 @@ namespace K_mod
             localizedText.Add(id, name);
         }
 
-        [System.Obsolete]
+        
         public static void easyTranslateWithDescription(string pLanguage, string id, string name)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
@@ -227,20 +227,20 @@ namespace K_mod
             Localization.addLocalization(id, name);
         }
 
-        [System.Obsolete]
+        
         public static void AchievementsTranslate(string name, string localName, string localDescription, bool location = false)
         {
             ButtonTranslate(name, localName, localDescription);
             ButtonTranslate(name + "s", localName, localDescription);
         }
 
-        [System.Obsolete]
+        
         public static void HandbookTranslate(string name, string localName, string localDescription)
         {
             ButtonTranslate(name + "s", localName, localDescription);
         }
 
-        [System.Obsolete]
+        
         public static void TipTranslate(string name, string localName, string localDescription, string localDescription2)
         {
             Localization.AddOrSet(name, localName);
@@ -248,7 +248,7 @@ namespace K_mod
             Localization.AddOrSet(name + " Description2", localDescription2);
         }
 
-        [System.Obsolete]
+        
         public static void SZSetTranslate(string id, string localName, string localB1, string localB1Description, string localB2, string localB2Description)
         {
             Localization.AddOrSet($"#{id}BLSZ", localName);
@@ -258,7 +258,7 @@ namespace K_mod
             Localization.AddOrSet(id + "ZIRightButton" + " Description", localB2Description);
         }
 
-        [System.Obsolete]
+        
         public static void KButtonTranslate(string name, string localName, string localDescription)
         {
             Localization.AddOrSet("GM" + name, localName);
@@ -269,27 +269,27 @@ namespace K_mod
             Localization.AddOrSet(name + "K Description", localDescription);
         }
 
-        [System.Obsolete]
+        
         public static void ButtonTranslate(string name, string localName, string localDescription)
         {
             Localization.AddOrSet(name, localName);
             Localization.AddOrSet(name + " Description", localDescription);
         }
 
-        [System.Obsolete]
+        
         public static void easyTranslate(string id, string name)
         {
             Localization.AddOrSet(id, name);
         }
 
-        [System.Obsolete]
+        
         public static void addCultureTechToLocalizedLibrary(string id, string description, string name)
         {
             Localization.AddOrSet("tech_" + id, name);
             Localization.AddOrSet("tech_info_" + id, description);
         }
 
-        [System.Obsolete]
+        
         private static void addCultureTechToLocalizedLibrary(string pLanguage, string id, string name, string description)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
@@ -305,14 +305,14 @@ namespace K_mod
             }
         }
 
-        [System.Obsolete]
+        
         public static void addTraitToLocalizedLibrary(string id, string description, string name)
         {
             Localization.AddOrSet("trait_" + id, name);
             Localization.AddOrSet("trait_" + id + "_info", description);
         }
 
-        [System.Obsolete]
+        
         public static void WinTextTranslate(string id, string Text)
         {
             if (Windows.AllWindows.ContainsKey(id))
@@ -325,7 +325,7 @@ namespace K_mod
             }
         }
 
-        [System.Obsolete]
+        
         private static void addItemsToLocalizedLibrary(string id, string name)
         {
             Localization.AddOrSet("item_" + id, name);

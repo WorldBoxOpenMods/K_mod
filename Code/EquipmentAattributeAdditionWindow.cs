@@ -13,7 +13,7 @@ namespace K_mod
         private static Vector2 originalSize;
         public static int currentButtonID;
 
-        [Obsolete]
+        
         public static void init()
         {
             contents = WindowManager.windowContents["EquipmentAattributeAdditionWindow"];
@@ -31,14 +31,14 @@ namespace K_mod
             loadItemMods();
         }
 
-        [Obsolete]
+        
         private static void loadItemMods()
         {
             foreach (Transform child in contents.transform)
             {
                 Destroy(child.gameObject);
             }
-            contents.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (AssetManager.items_modifiers.list.Count / 16) * originalSize.y) + originalSize;
+            contents.GetComponent<RectTransform>().sizeDelta = new Vector2(0, AssetManager.items_modifiers.list.Count / 16 * originalSize.y) + originalSize;
 
             int index = 0;
             int indexY = 0;
@@ -77,7 +77,7 @@ namespace K_mod
             }
         }
 
-        [Obsolete]
+        
         public static void openWindow(int buttonID)
         {
             currentButtonID = buttonID;
@@ -85,7 +85,7 @@ namespace K_mod
             Windows.ShowWindow("EquipmentAattributeAdditionWindow");
         }
 
-        [Obsolete]
+        
         private static void onModClick(ItemAsset mod)
         {
             if (!PowerButtons.GetToggleValue($"{mod.id}_modifier_K") && EquipmentAdditionWindow.itemModifiers.ContainsKey(currentButtonID.ToString()))
@@ -102,7 +102,7 @@ namespace K_mod
             }
         }
 
-        [Obsolete]
+        
         private static void checkToggleButtons()
         {
             foreach (KeyValuePair<string, PowerButton> kv in PowerButtons.CustomButtons)
@@ -125,7 +125,7 @@ namespace K_mod
             }
         }
 
-        [Obsolete]
+        
         private static void clearToggleButtons()
         {
             foreach (KeyValuePair<string, PowerButton> kv in PowerButtons.CustomButtons)

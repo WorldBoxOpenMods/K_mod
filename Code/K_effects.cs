@@ -8,7 +8,7 @@ namespace K_mod
 {
     class K_effects
     {
-        [Obsolete]
+        
         public static void init()
         {
             StatusEffect breakingArmor = new()
@@ -32,9 +32,9 @@ namespace K_mod
             };
             filling.base_stats[S.speed] = -40f;
             AssetManager.status.add(filling);
-            addTraitToLocalizedLibrary("cz", filling.id, "装填中...", "");
-            addTraitToLocalizedLibrary("ch", filling.id, "装填中...", "");
-            addTraitToLocalizedLibrary("en", filling.id, "filling...", "");
+            addStatusEffectToLocalizedLibrary("cz", filling.id, "装填中...", "");
+            addStatusEffectToLocalizedLibrary("ch", filling.id, "装填中...", "");
+            addStatusEffectToLocalizedLibrary("en", filling.id, "filling...", "");
 
             StatusEffect effect_cavalry = new()
             {
@@ -55,11 +55,25 @@ namespace K_mod
             effect_cavalry.remove_status.Add("rhino");
             //effect_cavalry.special_effect_interval = 0.01f;
             AssetManager.status.add(effect_cavalry);
-            addTraitToLocalizedLibrary("cz", effect_cavalry.id, "骑兵", "如果不是一名优秀的骑兵，我会是一名充满战斗热情的勇士");
-            addTraitToLocalizedLibrary("ch", effect_cavalry.id, "骑兵", "如果不是一名优秀的骑兵，我会是一名充满战斗热情的勇士");
-            addTraitToLocalizedLibrary("en", effect_cavalry.id, "cavalry", "cavalry");
+            addStatusEffectToLocalizedLibrary("cz", effect_cavalry.id, "骑兵", "如果不是一名优秀的骑兵，我会是一名充满战斗热情的勇士");
+            addStatusEffectToLocalizedLibrary("ch", effect_cavalry.id, "骑兵", "如果不是一名优秀的骑兵，我会是一名充满战斗热情的勇士");
+            addStatusEffectToLocalizedLibrary("en", effect_cavalry.id, "cavalry", "cavalry");
 
-
+            StatusEffect effect_roar = new()
+            {
+                id = "effect_roar",
+                name = "status_title_effect_roar",
+                animated = false,
+            };
+            effect_roar.base_stats[S.attack_speed] = 10f;
+            effect_roar.base_stats[S.damage] = 5f;
+            effect_roar.duration = 30f;
+            effect_roar.description = "status_description_effect_cavalry";
+            effect_roar.path_icon = "ui/Icons/effects/iconcavalry";
+            AssetManager.status.add(effect_roar);
+            addStatusEffectToLocalizedLibrary("cz", effect_roar.id, "怒吼", "冲冲冲！碾碎他们");
+            addStatusEffectToLocalizedLibrary("ch", effect_roar.id, "怒吼", "冲冲冲！碾碎他们");
+            addStatusEffectToLocalizedLibrary("en", effect_roar.id, "roar", "roar");
 
             StatusEffect BigPig = new()
             {
@@ -79,9 +93,9 @@ namespace K_mod
             BigPig.action_interval = 30f;
             //BigPig.special_effect_interval = 0.01f;
             AssetManager.status.add(BigPig);
-            addTraitToLocalizedLibrary("cz", BigPig.id, "大肥猪", "大肥猪");
-            addTraitToLocalizedLibrary("ch", BigPig.id, "大肥猪", "大肥猪");
-            addTraitToLocalizedLibrary("en", BigPig.id, "Big Pig", "Big Pig");
+            addStatusEffectToLocalizedLibrary("cz", BigPig.id, "大肥猪", "大肥猪");
+            addStatusEffectToLocalizedLibrary("ch", BigPig.id, "大肥猪", "大肥猪");
+            addStatusEffectToLocalizedLibrary("en", BigPig.id, "Big Pig", "Big Pig");
 
             StatusEffect rhino = new()
             {
@@ -89,13 +103,13 @@ namespace K_mod
                 name = "status_title_rhino",
                 animated = false,
             };
-            rhino.base_stats[S.knockback_reduction] = 0.7f;
-            rhino.base_stats[S.knockback] = 0.5f;
-            rhino.base_stats[S.speed] = -20f;
-            rhino.base_stats[S.attack_speed] = -20f;
-            rhino.base_stats[S.health] = 250;
-            rhino.base_stats[S.damage] = 25f;
-            rhino.base_stats[S.armor] = 10f;
+            rhino.base_stats[S.knockback_reduction] = 0.9f;
+            rhino.base_stats[S.knockback] = 0.7f;
+            rhino.base_stats[S.speed] = -10f;
+            rhino.base_stats[S.attack_speed] = -15f;
+            rhino.base_stats[S.health] = 150;
+            rhino.base_stats[S.damage] = 20f;
+            rhino.base_stats[S.armor] = 15f;
             rhino.duration = 10000f;
             rhino.description = "status_description_rhino";
             rhino.path_icon = "ui/Icons/effects/iconrhino";
@@ -103,9 +117,9 @@ namespace K_mod
             rhino.action_interval = 30f;
             //rhino.special_effect_interval = 0.01f;
             AssetManager.status.add(rhino);
-            addTraitToLocalizedLibrary("cz", rhino.id, "犀牛骑士", "犀牛骑士");
-            addTraitToLocalizedLibrary("ch", rhino.id, "犀牛骑士", "犀牛骑士");
-            addTraitToLocalizedLibrary("en", rhino.id, "Rhinoceros Knight", "Rhinoceros Knight");
+            addStatusEffectToLocalizedLibrary("cz", rhino.id, "犀牛骑士", "犀牛骑士");
+            addStatusEffectToLocalizedLibrary("ch", rhino.id, "犀牛骑士", "犀牛骑士");
+            addStatusEffectToLocalizedLibrary("en", rhino.id, "Rhinoceros Knight", "Rhinoceros Knight");
 
             StatusEffect charge = new()
             {
@@ -124,9 +138,9 @@ namespace K_mod
             // charge.remove_status.Add("BigPig");
             // charge.remove_status.Add("rhino");
             AssetManager.status.add(charge);
-            addTraitToLocalizedLibrary("cz", charge.id, "冲锋", "荣耀！冲锋！");
-            addTraitToLocalizedLibrary("ch", charge.id, "冲锋", "荣耀！冲锋！");
-            addTraitToLocalizedLibrary("en", charge.id, "charge", "charge");
+            addStatusEffectToLocalizedLibrary("cz", charge.id, "冲锋", "荣耀！冲锋！");
+            addStatusEffectToLocalizedLibrary("ch", charge.id, "冲锋", "荣耀！冲锋！");
+            addStatusEffectToLocalizedLibrary("en", charge.id, "charge", "charge");
 
 
             StatusEffect ChargeCooling = new()
@@ -139,9 +153,9 @@ namespace K_mod
                 path_icon = "ui/Icons/effects/iconcavalry"
             };
             AssetManager.status.add(ChargeCooling);
-            addTraitToLocalizedLibrary("cz", ChargeCooling.id, "冲锋冷却", "冲锋冷却");
-            addTraitToLocalizedLibrary("ch", ChargeCooling.id, "冲锋冷却", "冲锋冷却");
-            addTraitToLocalizedLibrary("en", ChargeCooling.id, "Charge Cooling", "Charge Cooling");
+            addStatusEffectToLocalizedLibrary("cz", ChargeCooling.id, "冲锋冷却", "冲锋冷却");
+            addStatusEffectToLocalizedLibrary("ch", ChargeCooling.id, "冲锋冷却", "冲锋冷却");
+            addStatusEffectToLocalizedLibrary("en", ChargeCooling.id, "Charge Cooling", "Charge Cooling");
 
             StatusEffect array = new()
             {
@@ -160,15 +174,15 @@ namespace K_mod
             array.remove_status.Add("charge");
             array.remove_status.Add("effect_cavalry");
             AssetManager.status.add(array);
-            addTraitToLocalizedLibrary("cz", "array", "列阵", "列阵");
-            addTraitToLocalizedLibrary("ch", "array", "列阵", "列阵");
-            addTraitToLocalizedLibrary("en", "array", "列阵", "列阵");
+            addStatusEffectToLocalizedLibrary("cz", "array", "列阵", "列阵");
+            addStatusEffectToLocalizedLibrary("ch", "array", "列阵", "列阵");
+            addStatusEffectToLocalizedLibrary("en", "array", "列阵", "列阵");
 
         }
 
 
-        [Obsolete]
-        private static void addTraitToLocalizedLibrary(string pLanguage, string id, string name, string description)
+        
+        private static void addStatusEffectToLocalizedLibrary(string pLanguage, string id, string name, string description)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
             if (language is not "en" and not "ch" and not "cz")

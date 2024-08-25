@@ -11,13 +11,13 @@ namespace K_mod
             var kingdomAsset = AssetManager.kingdoms.get("human");
             kingdomAsset.addFriendlyTag("Rome");
             kingdomAsset.addFriendlyTag("Arab");
-            // kingdomAsset.addFriendlyTag("Russia");
+            kingdomAsset.addFriendlyTag("Russia");
 
 
             var kingdomNomadsAsset = AssetManager.kingdoms.get("nomads_human");
             kingdomNomadsAsset.addFriendlyTag("Rome");
             kingdomNomadsAsset.addFriendlyTag("Arab");
-            // kingdomNomadsAsset.addFriendlyTag("Russia");
+            kingdomNomadsAsset.addFriendlyTag("Russia");
 
             var kingdomAsset2 = AssetManager.kingdoms.get("orc");
             kingdomAsset2.addFriendlyTag("tame");
@@ -112,12 +112,12 @@ namespace K_mod
             addKingdom12.addEnemyTag("bandits");
             newHiddenKingdom(addKingdom12);
             #endregion
-            KingdomAsset addKingdom13 = (new KingdomAsset
+            KingdomAsset addKingdom13 = new KingdomAsset
             {
                 id = "tame",
                 mobs = true,
                 count_as_danger = false
-            });
+            };
             addKingdom13.addTag("tame");
             addKingdom13.addTag("good");
             addKingdom13.addFriendlyTag("Rome");

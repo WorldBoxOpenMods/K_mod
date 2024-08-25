@@ -11,7 +11,6 @@ namespace K_mod
         private static GameObject contents;
         private static GameObject scrollView;
         private static Vector2 originalSize;
-        private static Culture currentCulture;
         public static GameObject contentComponent;
         public static Text contentText;
         private static int buttonID = 0;
@@ -20,7 +19,7 @@ namespace K_mod
         public static Dictionary<string, ItemOption> itemAssets = new();
         public static Dictionary<string, List<ItemAsset>> itemModifiers = new();
 
-        [Obsolete]
+        
         public static void init()
         {
             contents = WindowManager.windowContents["EquipmentAdditionWindow"];
@@ -35,35 +34,26 @@ namespace K_mod
             layoutGroup.childScaleWidth = true;
             layoutGroup.childAlignment = TextAnchor.UpperCenter;
             layoutGroup.spacing = 36;
-            // scrollView.gameObject.SetActive(true);
-            // contentComponent = GameObject.Find($"/Canvas Container Main/Canvas - Windows/windows/EquipmentAdditionWindow/Background/Name").gameObject;
-            // contentText = contentComponent.GetComponent<Text>();
-            // string text = "ddddddddddddddddddddddddddd";
-            // contentText.text = text.Replace(text, $"<color=#FFFFFF><b>{text}</b></color>");
-            // contentText.supportRichText = true;
-            // contentText.transform.SetParent(contents.transform);
-            // contentComponent.SetActive(true);
-
             loadItems();
         }
 
-        [Obsolete]
+        
         private static void loadItems()
         {
             foreach (EquipmentType type in Enum.GetValues(typeof(EquipmentType)))
             {
-                addNewItem(type);
+                AddNewItem(type);
             }
         }
 
-        [Obsolete]
+        
         public static void openWindow()
         {
             Windows.ShowWindow("EquipmentAdditionWindow");
         }
 
-        [Obsolete]
-        private static void addNewItem(EquipmentType type)
+        
+        private static void AddNewItem(EquipmentType type)
         {
             int currentButtonID = 0;
             currentButtonID += buttonID;
@@ -138,10 +128,9 @@ namespace K_mod
                 itemAssets[id].active = true;
             }
             Launch_scope = "people";
-            // PowerButtons.ToggleButton($"Item_city_active_K_{id.ToString()}");
         }
 
-        [Obsolete]
+        
         private static void toggleItemCityActive(string id)
         {
             if (itemAssets.ContainsKey(id))
@@ -149,7 +138,6 @@ namespace K_mod
                 itemAssets[id].active = PowerButtons.GetToggleValue($"Item_city_active_K_{id}");
             }
             Launch_scope = "city";
-            // PowerButtons.ToggleButton($"Item_active_K_{id.ToString()}");
         }
 
 

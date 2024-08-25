@@ -33,7 +33,7 @@ namespace K_mod
 
         }
 
-        [Obsolete]
+        
         public static Button createBGWindowButton(GameObject parent, int posY, string iconName, string buttonName, string buttonTitle,
         string buttonDesc, UnityAction call)
         {
@@ -75,7 +75,7 @@ namespace K_mod
             return textComp;
         }
 
-        [Obsolete]
+        
         public static void createTextButtonWSize(string name, string title, Vector2 pos, Color color, Transform parent, UnityAction callback, Vector2 size)
         {
             Button textButton = PowerButtons.CreateTextButton(
@@ -93,7 +93,7 @@ namespace K_mod
             textButton.gameObject.GetComponent<RectTransform>().sizeDelta += size;
         }
 
-        [Obsolete]
+        
         public static Button createTextButton(string name, string title, Vector2 pos, Color color, Transform parent, UnityAction callback, Vector2 size)
         {
             Button textButton = PowerButtons.CreateTextButton(

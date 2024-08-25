@@ -1,4 +1,5 @@
 using System;
+using K_mod.Utils;
 using ReflectionUtility;
 
 
@@ -20,7 +21,7 @@ namespace K_mod
         }
         public static bool action_spawn(WorldTile pTile, string pPowerID) { Actor actor = spawnUnit(pTile, pPowerID); if (actor == null) { return false; } return true; }
 
-        [Obsolete]
+        
         public static void init()
         {
             initPowers();
@@ -32,7 +33,7 @@ namespace K_mod
         public static Actor spawnUnit(WorldTile pTile, string pPowerID)
         {
             GodPower godPower = AssetManager.powers.get(pPowerID);
-            MusicBox.playSound("event:/SFX/UNIQUE/SpawnWhoosh", (float)pTile.pos.x, (float)pTile.pos.y, false, false);
+            MusicBox.playSound("event:/SFX/UNIQUE/SpawnWhoosh", pTile.pos.x, pTile.pos.y, false, false);
             if (godPower.id == SA.sheep && pTile.Type.lava)
             {
                 AchievementLibrary.achievementSacrifice.check(null, null, null);
@@ -54,7 +55,7 @@ namespace K_mod
             return actor;
         }
 
-        [Obsolete]
+        
         public static void initPowers()
         {
 
@@ -86,13 +87,13 @@ namespace K_mod
             DropAsset addItemsDrop = AssetManager.drops.clone("addItems", "blessing");
             addItemsDrop.id = "addItems";
             addItemsDrop.default_scale = 0.1f;
-            addItemsDrop.action_landed = new DropsAction(NewActions.action_give_item);
+            addItemsDrop.action_landed = new DropsAction(K_Tools.action_give_item);
             AssetManager.drops.add(addItemsDrop);
 
             DropAsset addHorseDrop = AssetManager.drops.clone("addHorse", "blessing");
             addHorseDrop.id = "addHorse";
             addHorseDrop.default_scale = 0.1f;
-            addHorseDrop.action_landed = new DropsAction(NewActions.action_give_Horse);
+            addHorseDrop.action_landed = new DropsAction(K_Tools.action_give_Horse);
             AssetManager.drops.add(addHorseDrop);
 
             GodPower addItems = new()
@@ -138,9 +139,9 @@ namespace K_mod
             };
             buildingPower.select_button_action = (PowerButtonClickAction)Delegate.Combine(
                 buildingPower.select_button_action,
-                new PowerButtonClickAction(NewActions.selectBuildingPower)
+                new PowerButtonClickAction(K_Tools.selectBuildingPower)
             );
-            buildingPower.click_power_action = new PowerAction(NewActions.action_spawn_building);
+            buildingPower.click_power_action = new PowerAction(K_Tools.action_spawn_building);
             AssetManager.powers.add(buildingPower);
         }
         private static GodPower createDropPower(string id, string dropID, DropsAction call)

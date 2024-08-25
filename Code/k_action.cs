@@ -32,7 +32,7 @@ namespace K_mod
     public delegate T KAction<T>();
     [Serializable]
     public delegate T1 KAction<T1, T2>(T2 t);
-    public class k_action
+    public class K_action
     {
         public Actor a = null;
         public string id = "null";
@@ -137,7 +137,7 @@ namespace K_mod
         }
         public static void init()
         {
-            Main.KActions.Add("Ballista", delegate (Actor actor, k_action action)
+            Main.KActions.Add("Ballista", delegate (Actor actor, K_action action)
             {
                 // action.animation=true;
                 // action.destroy = false;

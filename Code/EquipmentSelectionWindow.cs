@@ -39,14 +39,14 @@ namespace K_mod
             layoutGroup.spacing = new Vector2(15, 5);
         }
 
-        [Obsolete]
+        
         private static void loadItemTypes()
         {
             foreach (Transform child in contents.transform)
             {
                 Destroy(child.gameObject);
             }
-            contents.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (AssetManager.items.list.Count / 16) * originalSize.y) + originalSize;
+            contents.GetComponent<RectTransform>().sizeDelta = new Vector2(0, AssetManager.items.list.Count / 16 * originalSize.y) + originalSize;
             contents.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
 
             foreach (ItemAsset item in AssetManager.items.list)
@@ -102,7 +102,7 @@ namespace K_mod
             }
         }
 
-        [Obsolete]
+        
         public static void openWindow(int buttonID)
         {
             currentButtonID = buttonID;
@@ -110,7 +110,7 @@ namespace K_mod
             Windows.ShowWindow("EquipmentSelectionWindow");
         }
 
-        [Obsolete]
+        
         private static void onItemClick(ItemAsset asset, string material = null)
         {
             EquipmentAdditionWindow.itemAssets[currentButtonID.ToString()] = new ItemOption
@@ -120,7 +120,7 @@ namespace K_mod
                 material = material,
                 id = currentButtonID
             };
-            GameObject icon = PowerButtons.CustomButtons[$"Item_type_K_{currentButtonID.ToString()}"].gameObject.transform.GetChild(0).gameObject;
+            GameObject icon = PowerButtons.CustomButtons[$"Item_type_K_{currentButtonID}"].gameObject.transform.GetChild(0).gameObject;
             string icon_path = $"ui/Icons/items/icon_{asset.id}";
             if (material != null)
             {

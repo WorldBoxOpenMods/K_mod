@@ -420,11 +420,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\worldbox\\Mods\\K mod\\K_mod.csproj",
+      "projectUniqueName": "E:\\worldbox\\Mods\\K_mod_master\\K_mod.csproj",
       "projectName": "K_mod",
-      "projectPath": "E:\\worldbox\\Mods\\K mod\\K_mod.csproj",
+      "projectPath": "E:\\worldbox\\Mods\\K_mod_master\\K_mod.csproj",
       "packagesPath": "C:\\Users\\张昕宇\\.nuget\\packages\\",
-      "outputPath": "E:\\worldbox\\Mods\\K mod\\obj\\",
+      "outputPath": "E:\\worldbox\\Mods\\K_mod_master\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\张昕宇\\AppData\\Roaming\\NuGet\\NuGet.Config"

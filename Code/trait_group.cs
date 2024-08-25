@@ -8,7 +8,7 @@ namespace K_mod
     {
         public static string kmod = "kmod";
 
-        [Obsolete]
+        
         public static void init()
         {
             ActorTraitGroupAsset kmod = new()
@@ -18,12 +18,12 @@ namespace K_mod
                 color = Toolbox.makeColor("#A3AFFF", -1f)
             };
             AssetManager.trait_groups.add(kmod);
-            addTraitGroupToLocalizedLibrary("en", kmod.id, "Rome");
-            addTraitGroupToLocalizedLibrary("cz", kmod.id, "罗马");
+            AddTraitGroupToLocalizedLibrary("en", kmod.id, "Rome");
+            AddTraitGroupToLocalizedLibrary("cz", kmod.id, "罗马");
         }
 
-        [Obsolete]
-        private static void addTraitGroupToLocalizedLibrary(string planguage, string id, string name)
+        
+        private static void AddTraitGroupToLocalizedLibrary(string planguage, string id, string name)
         {
             string language = Reflection.GetField(LocalizedTextManager.instance.GetType(), LocalizedTextManager.instance, "language") as string;
             if (planguage == language)

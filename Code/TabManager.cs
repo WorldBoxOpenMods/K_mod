@@ -3,6 +3,7 @@ using NCMS.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using ReflectionUtility;
+using K_mod.Utils;
 
 namespace K_mod
 {
@@ -10,14 +11,14 @@ namespace K_mod
     {
         public static string buildingid = "";
 
-        [Obsolete]
+        
         public static void init()
         {
             createTab("Button Tab_K_mod", "Tab_K_mod", "罗马", "罗马", -362);
             loadButtons();
         }
 
-        [Obsolete]
+        
         public static void createTab(string buttonID, string tabID, string name, string desc, int xPos)
         {
             GameObject OtherTabButton = GameObjects.FindEvenInactive("Button_Other");
@@ -88,7 +89,7 @@ namespace K_mod
             }
         }
 
-        [Obsolete]
+        
         public static void tabOnClick(string tabID)
         {
             GameObject AdditionalTab = GameObjects.FindEvenInactive(tabID);
@@ -97,7 +98,7 @@ namespace K_mod
             AdditionalPowersTab.showTab(AdditionalPowersTab.powerButton);
         }
 
-        [Obsolete]
+        
         private static void loadButtons()
         {
             PowersTab collectionTab = getPowersTab("K_mod");
@@ -106,7 +107,7 @@ namespace K_mod
             int yPos = 18;
             int gap = 35;
 
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "spawn_Rome",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.iconRome.png"),
                 "Rome",
@@ -117,7 +118,7 @@ namespace K_mod
                 null
             );
             index++;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "spawn_Arab",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.iconArab.png"),
                 "Arab",
@@ -139,7 +140,7 @@ namespace K_mod
                 null
             );
             index++;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "spawn_horse",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.horse.png"),
                 "马",
@@ -161,7 +162,7 @@ namespace K_mod
             //     RacesAdditionWindow.openWindow
             // );
             // index++;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "Ballistafactory_drop",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.buildings.Ballistafactory.png"),
                 "Rome",
@@ -172,7 +173,7 @@ namespace K_mod
                 () => setBuildingPower("Ballistafactory")
             );
             index++;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "Catapultfactory_drop",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.buildings.Catapultfactory.png"),
                 "Rome",
@@ -184,7 +185,7 @@ namespace K_mod
             );
             index++;
 
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "EquipmentAddition",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.weapons.png"),
                 "装备编辑器",
@@ -196,7 +197,7 @@ namespace K_mod
             );
             index++;
 
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "Item_drop_K",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.weapons.png"),
                 "装备添加",
@@ -208,7 +209,7 @@ namespace K_mod
             );
             index++;
 
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "Horse_drop",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.iconcavalry.png"),
                 "马匹添加",
@@ -220,7 +221,7 @@ namespace K_mod
             );
             index++;
 
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "debug_K",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.Icons.iconDebug.png"),
                 "debug",
@@ -233,7 +234,7 @@ namespace K_mod
             index++;
 
             index = 0;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "national_strength",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.经济.png"),
                 "国力强化",
@@ -244,7 +245,7 @@ namespace K_mod
                 null
             );
             index++;
-            _ = PowerButtons.CreateButton(
+            PowerButtons.CreateButton(
                 "texture Cavalry",
                 Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.iconcavalry.png"),
                 "禁用贴图骑兵",
@@ -257,7 +258,7 @@ namespace K_mod
             index++;
         }
 
-        [Obsolete]
+        
         private static PowersTab getPowersTab(string id)
         {
             GameObject gameObject = GameObjects.FindEvenInactive("Tab_" + id);
@@ -266,7 +267,7 @@ namespace K_mod
         private static void setBuildingPower(string buildingID)
         {
             buildingid = buildingID;
-            _ = NewActions.selectBuildingPower($"{buildingID}_drop");
+            K_Tools.selectBuildingPower($"{buildingID}_drop");
         }
 
 

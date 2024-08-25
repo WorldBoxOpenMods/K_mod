@@ -4,16 +4,18 @@ using UnityEngine;
 using NCMS.Utils;
 using ai;
 using ai.behaviours;
+using K_mod.Utils;
+using System.Collections.Generic;
 
 namespace K_mod
 {
-    class Patcher
+    class K_harmony_other
     {
-        public static Patcher instance;
+        public static K_harmony_other instance;
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(TooltipLibrary), "showResource")]
-        [Obsolete]
+
         public static void showResource(Tooltip pTooltip, string pType, TooltipData pData = default(TooltipData))
         {
             ResourceAsset resource = pData.resource;
@@ -62,7 +64,7 @@ namespace K_mod
             __result = random;
             return false;
         }
-      
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CityBehBuild), "calcPossibleBuildings")]
         public static bool calcPossibleBuildings(City pCity)
@@ -83,7 +85,7 @@ namespace K_mod
                 }
 
                 BuildingAsset buildingAsset = buildOrder.getBuildingAsset(pCity, null);
-                if (buildingAsset == null){continue;}
+                if (buildingAsset == null) { continue; }
                 if ((buildingAsset.id == "Catapultfactory" || buildingAsset.id == "Ballistafactory") && pCity.race.id != "Arab" && pCity.race.id != "Rome" && pCity.race.id != "Xia" && pCity.race.id != "Russia")
                 {
                     continue;
@@ -219,21 +221,67 @@ namespace K_mod
             }
             return;
         }
-
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(CityBehCheckLeader), "checkFindLeader")]
-        public static bool checkFindLeader(City pCity)
+        [HarmonyPatch(typeof(Projectile), "destroy")]
+        public static bool destroy_Prefix_Projectile(Projectile __instance)
         {
-            Actor pActor = pCity.leader;
-            if (pActor != null)
+            BaseSimObject byWho = __instance.byWho;
+            WorldTile tile = World.world.GetTile((int)__instance.m_transform.position.x, (int)__instance.m_transform.position.y);
+            if (byWho != null && byWho.isAlive() && tile != null)
             {
-                if (pActor.asset.id is "Ballista" or "Catapult")
+                int range = (int)byWho.stats[S.area_of_effect];
+                if (__instance.IsID("stone"))
                 {
-                    pCity.removeLeader();
+                    float damage = byWho.stats[S.damage];
+                    List<BaseSimObject> objs = new();
+                    if (__instance.stats[S.damage] > byWho.stats[S.damage])
+                    {
+                        damage += __instance.stats[S.damage] - byWho.stats[S.damage];
+                    }
+                    List<WorldTile> tiles = new() { tile };
+                    List<WorldTile> all_tiles = new() { tile };
+                    for (int i = 0; i < range.Min(2); i++)
+                    {
+                        List<WorldTile> new_tiles = new();
+                        foreach (WorldTile tile2 in tiles)
+                        {
+                            foreach (WorldTile tile3 in tile2.neighboursAll)
+                            {
+                                if (!all_tiles.Contains(tile3))
+                                {
+                                    new_tiles.Add(tile3);
+                                    all_tiles.Add(tile3);
+                                }
+                            }
+                            Building b = tile2.building;
+                            if (b != null && b.isAlive() && byWho.kingdom.isEnemy(b.kingdom) && !objs.Contains(b))
+                            {
+                                objs.Add(b);
+                            }
+                            foreach (Actor a in tile2._units)
+                            {
+                                if (a.Any() && byWho.kingdom.isEnemy(a.kingdom) && !objs.Contains(a))
+                                {
+                                    objs.Add(a);
+                                }
+                            }
+                        }
+                        tiles = new_tiles;
+                    }
+                    Main.PVZRangeDamage(tile, damage, range, AttackType.Fire, byWho, delegate (BaseSimObject pTarget, WorldTile pTile)
+                    {
+                        objs.Remove(pTarget);
+                        return true;
+                    });
+                    foreach (BaseSimObject obj in objs)
+                    {
+                        obj.getHit(damage, true, AttackType.Weapon, byWho, false);
+                    }
                 }
             }
             return true;
         }
+
 
 
     }

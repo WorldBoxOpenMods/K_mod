@@ -5,13 +5,13 @@ using UnityEngine;
 using ReflectionUtility;
 namespace K_mod
 {
-    internal class k_actors
+    internal class K_actors
     {
         public static Dictionary<string, AttackAction> AttackAction = new();
         public static Dictionary<string, List<string>> ActorAnimationTextures = new();
         public static Dictionary<string, KActionSave> ActorAction = new();
         public static Dictionary<string, List<KAction<bool, Actor>>> ActorAnimationBool = new();
-        [Obsolete]
+        
 
         public void init()
         {

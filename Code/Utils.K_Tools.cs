@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using NCMS.Utils;
 using UnityEngine;
 
-namespace K_mod
+namespace K_mod.Utils
 {
-    class NewActions : MonoBehaviour
+    class K_Tools : MonoBehaviour
     {
         public static City convertCityA = null;
         public static City convertCityB = null;
@@ -16,10 +16,10 @@ namespace K_mod
         {
             BuildingAsset bAsset = AssetManager.buildings.get(TabManager.buildingid);
             if (bAsset == null) { return false; }
-            int size = (int)(bAsset.fundament.left + bAsset.fundament.right + 1) / 2;
-            if (!AssetManager.brush_library.dict.ContainsKey($"sqr_{size.ToString()}"))
+            int size = (bAsset.fundament.left + bAsset.fundament.right + 1) / 2;
+            if (!AssetManager.brush_library.dict.ContainsKey($"sqr_{size}"))
             {
-                BrushData bData = AssetManager.brush_library.clone($"sqr_{size.ToString()}", "sqr_10");
+                BrushData bData = AssetManager.brush_library.clone($"sqr_{size}", "sqr_10");
                 bData.size = size;
                 bData.generate_action = delegate (BrushData pAsset)
                 {
@@ -30,14 +30,14 @@ namespace K_mod
                     {
                         for (int l = -size2; l <= size2; l++)
                         {
-                            list2.Add(new BrushPixelData(k, l, (float)size2));
+                            list2.Add(new BrushPixelData(k, l, size2));
                         }
                     }
                     pAsset.pos = list2.ToArray();
                 };
             }
             AssetManager.brush_library.post_init();
-            AssetManager.powers.get(pPowerID).forceBrush = $"sqr_{size.ToString()}";
+            AssetManager.powers.get(pPowerID).forceBrush = $"sqr_{size}";
             return false;
         }
 
@@ -57,7 +57,7 @@ namespace K_mod
             return true;
         }
 
-        [System.Obsolete]
+        
         public static void action_give_item(WorldTile pTile = null, string pDropID = null)
         {
             if (EquipmentAdditionWindow.Launch_scope == "people")
@@ -70,7 +70,7 @@ namespace K_mod
             }
         }
 
-        [System.Obsolete]
+        
         public static void action_give_city_item(WorldTile pTile, string pPower)
         {
             if (pTile.zone.city == null)
@@ -116,7 +116,7 @@ namespace K_mod
             WorldTip.showNow("city_give_item_success", true, "top", 3f);
         }
 
-        [System.Obsolete]
+        
         public static void action_give_people_item(WorldTile pTile = null, string pDropID = null)
         {
             MapBox.instance.getObjectsInChunks(pTile, 3, MapObjectType.Actor);
@@ -162,7 +162,7 @@ namespace K_mod
             }
         }
 
-        [System.Obsolete]
+        
         public static void action_give_Horse(WorldTile pTile = null, string pDropID = null)
         {
             MapBox.instance.getObjectsInChunks(pTile, 3, MapObjectType.Actor);
