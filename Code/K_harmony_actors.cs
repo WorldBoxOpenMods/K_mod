@@ -175,11 +175,7 @@ public class K_harmony_actors
         }
 
         BaseSimObject result = null;
-        float searchRange = 20f; // 设置扩大索敌范围时的搜索半径
-        if(__instance.hasStatus("effect_cavalry"))
-        {
-            searchRange=100f;
-        }
+        float searchRange = 2f; // 设置扩大索敌范围时的搜索半径
 
         foreach (BaseSimObject enemy in enemyFinderData.list)
         {
@@ -241,40 +237,40 @@ public class K_harmony_actors
         __result = BehResult.Stop;
         return true;
     }
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ActorBase), "checkSpriteHead")]
-    public static bool checkSpriteHead(ActorBase __instance)
-    {
-        if (!__instance.dirty_sprite_head)
-        {
-            return true;
-        }
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(ActorBase), "checkSpriteHead")]
+    // public static bool checkSpriteHead(ActorBase __instance)
+    // {
+    //     if (!__instance.dirty_sprite_head)
+    //     {
+    //         return true;
+    //     }
 
-        if (!__instance.asset.body_separate_part_head)
-        {
-            return true;
-        }
-        if (__instance.tryToLoadFunHead())
-        {
-            return true;
-        }
-        if (!__instance.asset.unit)
-        {
-            return true;
-        }
-        string text;
-        string pPath;
-        if (__instance.data.profession == UnitProfession.Warrior && !__instance.equipment.helmet.isEmpty() && __instance.asset.race == "Russia")
-        {
-            int i = Toolbox.randomInt(1, 5);
-            text = $"head_warrior{i}";
-            pPath = "actors/races/" + __instance.asset.race + "/heads_special";
-            __instance.setHeadSprite(ActorAnimationLoader.getHeadSpecial(pPath, text));
-            __instance.dirty_sprite_head = false;
-            return false;
-        }
-        return true;
-    }
+    //     if (!__instance.asset.body_separate_part_head)
+    //     {
+    //         return true;
+    //     }
+    //     if (__instance.tryToLoadFunHead())
+    //     {
+    //         return true;
+    //     }
+    //     if (!__instance.asset.unit)
+    //     {
+    //         return true;
+    //     }
+    //     string text;
+    //     string pPath;
+    //     if (__instance.data.profession == UnitProfession.Warrior && !__instance.equipment.helmet.isEmpty() && __instance.asset.race == "Russia")
+    //     {
+    //         int i = Toolbox.randomInt(1, 5);
+    //         text = $"head_warrior{i}";
+    //         pPath = "actors/races/" + __instance.asset.race + "/heads_special";
+    //         __instance.setHeadSprite(ActorAnimationLoader.getHeadSpecial(pPath, text));
+    //         __instance.dirty_sprite_head = false;
+    //         return false;
+    //     }
+    //     return true;
+    // }
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ActorBase), "checkAnimationContainer")]
     public static void CheckAnimationContainerPostfix(ActorBase __instance)

@@ -226,7 +226,7 @@ namespace K_mod
             Race Russia = AssetManager.raceLibrary.clone("Russia", "human");
 
             tRace = Russia;
-            Russia.civ_baseCities = 3;
+            Russia.civ_baseCities = 5;
             Russia.civ_base_army_mod = 1.6f;
             Russia.build_order_id = "kingdom_base";
             Russia.path_icon = "ui/Icons/iconRussia";
@@ -274,11 +274,11 @@ namespace K_mod
             "unit_warrior_2",
             "unit_warrior_4",
             "unit_warrior_5",
-            "unit_warrior_6",
-            "unit_warrior_7",
-            "unit_warrior_8",
-            "unit_warrior_9",
-            "unit_warrior_10"
+            // "unit_warrior_6",
+            // "unit_warrior_7",
+            // "unit_warrior_8",
+            // "unit_warrior_9",
+            // "unit_warrior_10"
             });
             Russia.nomad_kingdom_id = $"nomads_{Russia.id}";
             AssetManager.raceLibrary.CallMethod("setPreferredStatPool", "diplomacy#1,warfare#1,stewardship#0,intelligence#0");
