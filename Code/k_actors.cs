@@ -11,7 +11,7 @@ namespace K_mod
         public static Dictionary<string, List<string>> ActorAnimationTextures = new();
         public static Dictionary<string, KActionSave> ActorAction = new();
         public static Dictionary<string, List<KAction<bool, Actor>>> ActorAnimationBool = new();
-        
+
 
         public void init()
         {
@@ -125,14 +125,14 @@ namespace K_mod
             var RussiaAsset = AssetManager.actor_library.clone("unit_Russia", "unit_human");
             RussiaAsset.nameLocale = "Russias";
             RussiaAsset.body_separate_part_head = true;
-            RussiaAsset.heads = 4;
+            RussiaAsset.heads = 11;
             RussiaAsset.oceanCreature = false;
             RussiaAsset.nameTemplate = "human_name";
             RussiaAsset.race = "Russia";
-            RussiaAsset.base_stats[S.max_age] = 70f;
+            RussiaAsset.base_stats[S.max_age] = 80f;
             RussiaAsset.icon = "iconRussia";
             RussiaAsset.color = Toolbox.makeColor("#33724D");
-            RussiaAsset.setBaseStats(120, 5, 60, 5, 90, 5);
+            RussiaAsset.setBaseStats(120, 5, 60, 0, 90, 5);
             RussiaAsset.fmod_spawn = "event:/SFX/UNITS/Human/HumanSpawn";
             RussiaAsset.fmod_attack = "event:/SFX/UNITS/Human/HumanAttack";
             RussiaAsset.fmod_idle = "event:/SFX/UNITS/Human/HumanIdle";
@@ -142,12 +142,14 @@ namespace K_mod
             AssetManager.actor_library.CallMethod("loadShadow", RussiaAsset);
             AssetManager.actor_library.add(RussiaAsset);
             Localization.addLocalization(RussiaAsset.nameLocale, "斯拉夫人");
+            //RussiaAssetraits.Add("zho");
 
             var Russiababy = AssetManager.actor_library.clone("baby_Russia", "unit_Russia");
             Russiababy.body_separate_part_head = false;
             Russiababy.body_separate_part_hands = false;
             Russiababy.take_items = false;
             Russiababy.base_stats[S.speed] = 10f;
+            // Russiababy.timeToGrow = 60;
             Russiababy.baby = true;
             Russiababy.animation_idle = "walk_1";
             Russiababy.growIntoID = "unit_Russia";

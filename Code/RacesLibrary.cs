@@ -40,7 +40,6 @@ namespace K_mod
 
             tRace = Rome;
             Rome.civ_baseCities = 5;
-            Rome.civ_base_army_mod = 1.5f;
             Rome.civ_base_zone_range = 15;
             //Rome.build_order_id = "Rome";
             // Rome.color = Toolbox.makeColor("#548CFE");
@@ -144,7 +143,6 @@ namespace K_mod
 
             tRace = Arab;
             Arab.civ_baseCities = 3;
-            Arab.civ_base_army_mod = 1.6f;
             Arab.build_order_id = "kingdom_base";
             Arab.path_icon = "ui/Icons/iconArab";
             Arab.nameLocale = "Arab";
@@ -227,7 +225,6 @@ namespace K_mod
 
             tRace = Russia;
             Russia.civ_baseCities = 5;
-            Russia.civ_base_army_mod = 1.6f;
             Russia.build_order_id = "kingdom_base";
             Russia.path_icon = "ui/Icons/iconRussia";
             Russia.nameLocale = "Russia";
@@ -274,11 +271,11 @@ namespace K_mod
             "unit_warrior_2",
             "unit_warrior_4",
             "unit_warrior_5",
-            // "unit_warrior_6",
-            // "unit_warrior_7",
-            // "unit_warrior_8",
-            // "unit_warrior_9",
-            // "unit_warrior_10"
+            "unit_warrior_6",
+            "unit_warrior_7",
+            "unit_warrior_8",
+            "unit_warrior_9",
+            "unit_warrior_10"
             });
             Russia.nomad_kingdom_id = $"nomads_{Russia.id}";
             AssetManager.raceLibrary.CallMethod("setPreferredStatPool", "diplomacy#1,warfare#1,stewardship#0,intelligence#0");
@@ -340,8 +337,8 @@ namespace K_mod
                 {
                     innerRac.culture_forbidden_tech.Add("Catapultfactory_tec1");
                     innerRac.culture_forbidden_tech.Add("Ballistafactory_tec1");
-                    innerRac.culture_forbidden_tech.Add("Catapultfactory_tec2");
-                    innerRac.culture_forbidden_tech.Add("Ballistafactory_tec2");
+                    // innerRac.culture_forbidden_tech.Add("Catapultfactory_tec2");
+                    // innerRac.culture_forbidden_tech.Add("Ballistafactory_tec2");
                 }
             }
             var rac = AssetManager.raceLibrary.get("orc");

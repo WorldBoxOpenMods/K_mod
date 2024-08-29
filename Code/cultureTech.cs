@@ -96,7 +96,7 @@ namespace K_mod
                 priority = true,
                 type = TechType.Rare
             };
-            Bayt_al_Hikma.stats.knowledge_gain.add(0.5f);
+            Bayt_al_Hikma.stats.knowledge_gain.add(0.2f);
             AssetManager.culture_tech.add(Bayt_al_Hikma);
 
             LoyaltyAsset rule = new()

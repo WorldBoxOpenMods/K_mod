@@ -40,13 +40,23 @@ public class K_harmony_city
             return;
         }
 
-        if (pCity.data.storage.get(SR.gold) < 10)
+        if (pCity.data.storage.get(SR.gold) < 100)
             return;
-
         float cavalryChance = CalculateCavalryChance(pCity);
+        pCity.data.get("horse", out float pResult, 0);
+
+
 
         if (pCity.countProfession(UnitProfession.Warrior) > 0)
         {
+            if (pResult > 0)
+            {
+                float num = pResult  / pCity.professionsDict[UnitProfession.Warrior].Count;
+                if (num > cavalryChance*5)
+                {
+                    return;
+                }
+            }
             Actor actor = pCity.professionsDict[UnitProfession.Warrior].GetRandom<Actor>();
 
             if (actor == null || !actor.isAlive())
@@ -66,7 +76,7 @@ public class K_harmony_city
     {
         HashSet<string> cavalryRaces = new()
             {
-                "human", "orc", "elf", "dwarf", "Arab", "Pig", "Rome", "Xia"
+                "human", "orc", "elf", "dwarf", "Arab", "Pig", "Rome", "Xia","Russia"
             };
         return cavalryRaces.Contains(raceId);
     }
@@ -176,7 +186,7 @@ public class K_harmony_city
         float baseCost = 2; //骑兵的默认成本
         if (actor.race.id is "orc" or "Arab")
         {
-            baseCost -= 1; //降低特定race的成本
+            baseCost = 1; //降低特定race的成本
         }
         return baseCost;
     }

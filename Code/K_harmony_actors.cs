@@ -203,9 +203,9 @@ public class K_harmony_actors
         return false;
     }
 
-    [HarmonyPrefix]
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(BehGoToActorTarget), "execute")]
-    public static bool execute(BehGoToActorTarget __instance, Actor pActor, ref BehResult __result)
+    public static void execute(BehGoToActorTarget __instance, Actor pActor, ref BehResult __result)
     {
         WorldTile pTile = pActor.beh_actor_target.currentTile;
         string text = __instance.type;
@@ -231,11 +231,11 @@ public class K_harmony_actors
                 pActor.addStatusEffect("charge", 3f);
             }
             __result = BehResult.Continue;
-            return false;
+            return;
         }
         pActor.ignoreTarget(pActor.beh_actor_target);
         __result = BehResult.Stop;
-        return true;
+        return;
     }
     // [HarmonyPrefix]
     // [HarmonyPatch(typeof(ActorBase), "checkSpriteHead")]
