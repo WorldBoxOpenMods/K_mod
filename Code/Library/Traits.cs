@@ -9,77 +9,77 @@ namespace K_mod
         
         public static void init()
         {
-            ActorTrait 防御 = new()
-            {
-                id = "防御",
-                path_icon = "ui/Icons/traits/防御",
-                birth = 0.2f,
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(防御);
-            addTraitToLocalizedLibrary("cz", 防御.id, "组织防御", "防御");
-            addTraitToLocalizedLibrary("en", 防御.id, "defense", "defense");
-            PlayerConfig.unlockTrait(防御.id);
+            // ActorTrait 防御 = new()
+            // {
+            //     id = "防御",
+            //     path_icon = "ui/Icons/traits/防御",
+            //     birth = 0.2f,
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(防御);
+            // addTraitToLocalizedLibrary("cz", 防御.id, "组织防御", "防御");
+            // addTraitToLocalizedLibrary("en", 防御.id, "defense", "defense");
+            // PlayerConfig.unlockTrait(防御.id);
 
-            ActorTrait 经济 = new()
-            {
-                id = "经济",
-                path_icon = "ui/Icons/traits/经济",
-                birth = 0.2f,
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(经济);
-            addTraitToLocalizedLibrary("cz", 经济.id, "调控经济", "经济");
-            addTraitToLocalizedLibrary("en", 经济.id, "economy", "economy");
-            PlayerConfig.unlockTrait(经济.id);
+            // ActorTrait 经济 = new()
+            // {
+            //     id = "经济",
+            //     path_icon = "ui/Icons/traits/经济",
+            //     birth = 0.2f,
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(经济);
+            // addTraitToLocalizedLibrary("cz", 经济.id, "调控经济", "经济");
+            // addTraitToLocalizedLibrary("en", 经济.id, "economy", "economy");
+            // PlayerConfig.unlockTrait(经济.id);
 
-            ActorTrait 军备 = new()
-            {
-                id = "军备",
-                path_icon = "ui/Icons/traits/军备",
-                birth = 0.2f,
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(军备);
-            addTraitToLocalizedLibrary("cz", 军备.id, "掌管武器制作和分配", "军备");
-            addTraitToLocalizedLibrary("en", 军备.id, "economy", "economy");
-            PlayerConfig.unlockTrait(军备.id);
+            // ActorTrait 军备 = new()
+            // {
+            //     id = "军备",
+            //     path_icon = "ui/Icons/traits/军备",
+            //     birth = 0.2f,
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(军备);
+            // addTraitToLocalizedLibrary("cz", 军备.id, "掌管武器制作和分配", "军备");
+            // addTraitToLocalizedLibrary("en", 军备.id, "economy", "economy");
+            // PlayerConfig.unlockTrait(军备.id);
 
-            ActorTrait 开采 = new()
-            {
-                id = "开采",
-                path_icon = "ui/Icons/traits/开采",
-                // 开采.birth = 0.2f;
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(开采);
-            addTraitToLocalizedLibrary("cz", 开采.id, "开采矿石", "开采");
-            addTraitToLocalizedLibrary("en", 开采.id, "defense", "defense");
-            // PlayerConfig.unlockTrait(开采.id); 
+            // ActorTrait 开采 = new()
+            // {
+            //     id = "开采",
+            //     path_icon = "ui/Icons/traits/开采",
+            //     // 开采.birth = 0.2f;
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(开采);
+            // addTraitToLocalizedLibrary("cz", 开采.id, "开采矿石", "开采");
+            // addTraitToLocalizedLibrary("en", 开采.id, "defense", "defense");
+            // // PlayerConfig.unlockTrait(开采.id); 
 
-            ActorTrait 粮食 = new()
-            {
-                id = "粮食",
-                path_icon = "ui/Icons/traits/粮食",
-                // 粮食.birth = 0.2f;
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(粮食);
-            addTraitToLocalizedLibrary("cz", 粮食.id, "屯田", "田地");
-            addTraitToLocalizedLibrary("en", 粮食.id, "economy", "economy");
-            // PlayerConfig.unlockTrait(粮食.id); 
+            // ActorTrait 粮食 = new()
+            // {
+            //     id = "粮食",
+            //     path_icon = "ui/Icons/traits/粮食",
+            //     // 粮食.birth = 0.2f;
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(粮食);
+            // addTraitToLocalizedLibrary("cz", 粮食.id, "屯田", "田地");
+            // addTraitToLocalizedLibrary("en", 粮食.id, "economy", "economy");
+            // // PlayerConfig.unlockTrait(粮食.id); 
 
-            ActorTrait 石料 = new()
-            {
-                id = "石料",
-                path_icon = "ui/Icons/traits/石料",
-                // 石料.birth = 0.2f;
-                group_id = trait_group.kmod
-            };
-            AssetManager.traits.add(石料);
-            addTraitToLocalizedLibrary("cz", 石料.id, "石料", "石料");
-            addTraitToLocalizedLibrary("en", 石料.id, "economy", "economy");
-            // PlayerConfig.unlockTrait(石料.id); 
+            // ActorTrait 石料 = new()
+            // {
+            //     id = "石料",
+            //     path_icon = "ui/Icons/traits/石料",
+            //     // 石料.birth = 0.2f;
+            //     group_id = trait_group.kmod
+            // };
+            // AssetManager.traits.add(石料);
+            // addTraitToLocalizedLibrary("cz", 石料.id, "石料", "石料");
+            // addTraitToLocalizedLibrary("en", 石料.id, "economy", "economy");
+            // // PlayerConfig.unlockTrait(石料.id); 
 
             ActorTrait Tame = new()
             {

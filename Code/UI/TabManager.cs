@@ -140,17 +140,17 @@ namespace K_mod
                 null
             );
             index++;
-            PowerButtons.CreateButton(
-                "spawn_horse",
-                Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.horse.png"),
-                "马",
-                "生成马",
-                new Vector2(xPos + (index * gap), yPos),
-                ButtonType.GodPower,
-                collectionTab.transform,
-                null
-            );
-            index++;
+            // PowerButtons.CreateButton(
+            //     "spawn_horse",
+            //     Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.horse.png"),
+            //     "马",
+            //     "生成马",
+            //     new Vector2(xPos + (index * gap), yPos),
+            //     ButtonType.GodPower,
+            //     collectionTab.transform,
+            //     null
+            // );
+            // index++;
             // PowerButtons.CreateButton(
             //     "spawn_races", 
             //     Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.races.png"), 

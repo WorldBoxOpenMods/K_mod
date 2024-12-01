@@ -39,7 +39,18 @@ namespace K_mod
         [HarmonyPatch(typeof(ActorTool), "findNewBuildingTarget")]
         public static bool findNewBuildingTarget(Actor pActor, string pType, ref Building __result)
         {
-            if (pType == "Market")
+            if (pType == "feces")
+            {
+                if (pActor.city.hasBuildingType(pType, true))
+                {
+                    Building buildingType = pActor.city.getBuildingType(pType, true, false);
+                    if (buildingType.currentTile.isSameIsland(pActor.currentTile))
+                    {
+                        ActorTool.possible_buildings.Add(buildingType);
+                    }
+                }
+            }
+            else if (pType == "Market")
             {
                 if (pActor.city.hasBuildingType("Market", true))
                 {
