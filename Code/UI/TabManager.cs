@@ -139,6 +139,27 @@ namespace K_mod
                 collectionTab.transform,
                 null
             );
+            PowerButtons.CreateButton(
+                "spawn_Ballista",
+                Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.Ballista.png"),
+                "Ballista",
+                "Spawn Ballista",
+                new Vector2(xPos + (index * gap), yPos-gap),
+                ButtonType.GodPower,
+                collectionTab.transform,
+                null
+            );
+            index++;
+            PowerButtons.CreateButton(
+                "spawn_Catapult",
+                Mod.EmbededResources.LoadSprite($"{Mod.Info.Name}.Resources.units.Catapult.png"),
+                "Catapult",
+                "Spawn Catapult",
+                new Vector2(xPos + (index * gap), yPos),
+                ButtonType.GodPower,
+                collectionTab.transform,
+                null
+            );
             index++;
             // PowerButtons.CreateButton(
             //     "spawn_horse",

@@ -648,12 +648,18 @@ public class K_harmony_actors
     [HarmonyPatch(typeof(ActorBase), "nextJobActor")]
     public static bool nextJobActor_Postfix(ActorBase pActor, ref string __result)
     {
-        if (pActor.hasStatus("ChargeCooling") || pActor.hasStatus("filling"))
+        if (pActor.asset.id=="Catapult"||pActor.asset.id=="Ballista")
+        {
+            __result = "attacker";
+            return false;
+        }
+        else if (pActor.hasStatus("ChargeCooling") || pActor.hasStatus("filling"))
         {
             Debug.Log("逃离");
             __result = "Strike retreat";
             return false;
         }
+
         return true;
     }
 }
