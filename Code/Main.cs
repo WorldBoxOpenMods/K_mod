@@ -11,6 +11,7 @@ using ai;
 using EpPathFinding.cs;
 using K_mod.Utils;
 using UnityEngine.Events;
+using NeoModLoader.api;
 
 namespace K_mod
 {
@@ -18,7 +19,7 @@ namespace K_mod
 
     class Main : MonoBehaviour
     {
-        public static bool KmodLoad = false;
+        public static ModDeclare modDeclare;
         public K_actors moreActors = new();
         public RacesLibrary RacesLibrary = new();
         public MoreKingdoms moreKingdoms = new();

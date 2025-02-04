@@ -44,7 +44,7 @@ namespace K_mod
             };
             effect_cavalry.base_stats[S.knockback_reduction] = 0.4f;
             effect_cavalry.base_stats[S.knockback] = 0.25f;
-            effect_cavalry.base_stats[S.speed] = 120f;
+            effect_cavalry.base_stats[S.speed] = 50f;
             effect_cavalry.base_stats[S.health] = 100;
             effect_cavalry.duration = 10000f;
             effect_cavalry.description = "status_description_effect_cavalry";
@@ -133,7 +133,7 @@ namespace K_mod
             charge.path_icon = "ui/Icons/effects/iconcavalry";
             charge.action = new WorldAction(K_effects_action.charge_1);
             charge.animation_speed = 0.1f;
-            charge.texture = "charge";
+            charge.texture = "charge/charge";
             charge.action_interval = 30f;
             // charge.remove_status.Add("BigPig");
             // charge.remove_status.Add("rhino");
@@ -196,5 +196,12 @@ namespace K_mod
                 localizedText.Add("status_description_" + id, description);
             }
         }
+        /*  骑兵逻辑设计
+        1.骑兵发现敌人，开始加速
+        2.攻击到敌人，加速效果漫漫消失，惯性效果继续前移
+        3.敌人收到攻击而被击退
+        4.敌人收到额外伤害，甚至被击飞
+        
+        */
     }
 }

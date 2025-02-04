@@ -15,10 +15,6 @@ namespace K_mod
 
             loadRaceBuildings();
         }
-        private BuildingAsset get(string pID)
-        {
-            return AssetManager.buildings.get(pID);
-        }
 
         
         private void loadRaceBuildings()

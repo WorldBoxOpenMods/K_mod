@@ -112,7 +112,7 @@ namespace K_mod
             addKingdom12.addEnemyTag("bandits");
             newHiddenKingdom(addKingdom12);
             #endregion
-            KingdomAsset addKingdom13 = new KingdomAsset
+            KingdomAsset addKingdom13 = new()
             {
                 id = "tame",
                 mobs = true,

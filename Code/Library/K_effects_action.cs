@@ -18,16 +18,16 @@ namespace K_mod
                 return false;
             }
 
-            if (actor.tileTarget != null && actor.currentTile != null)
+            if (actor.tileTarget != null && actor.currentTile != null&&actor.getWeaponAsset().attackType!=WeaponType.Range)
             {
-                if (Toolbox.DistTile(actor.tileTarget, actor.currentTile) < 2f)
-                {
-                    actor.removeStatusEffect("charge");
-                    return false;
-                }
+                // if (Toolbox.DistTile(actor.tileTarget, actor.currentTile) < 2f)
+                // {
+                //     actor.removeStatusEffect("charge");
+                //     return false;
+                // }
 
                 // 根据距离影响周围敌人
-                List<BaseSimObject> nearbyObjects = Main.getObjectsInChunks(pTile, 2, MapObjectType.Actor);
+                List<BaseSimObject> nearbyObjects = Main.getObjectsInChunks(pTile, 3, MapObjectType.Actor);
                 foreach (BaseSimObject obj in nearbyObjects)
                 {
                     if (obj is Actor nearbyActor)
@@ -49,7 +49,7 @@ namespace K_mod
 
         public static bool ShouldApplyImpact(Actor source, Actor target)
         {
-            return target.data != null && target.data.alive&&target.kingdom!=source.kingdom
+            return target.data != null && target.data.alive && target.kingdom != source.kingdom
                 && source.kingdom.isEnemy(target.kingdom)
                 && !target.asset.flying && !target.asset.hovering && !target.isFlying();
         }
@@ -60,14 +60,14 @@ namespace K_mod
             target.getHit(damage, true, AttackType.Weapon, source, true);
 
             float angle = Toolbox.getAngle(target.transform.position.x, target.transform.position.y, source.transform.position.x, source.transform.position.y);
-            if(source.race.id!="dwarf")
-            target.addForce(-Mathf.Cos(angle) * 0.45f, -Mathf.Sin(angle) * 0.45f, 0.5f);
+            if (source.race.id != "dwarf")
+                target.addForce(-Mathf.Cos(angle) * 0.45f, -Mathf.Sin(angle) * 0.45f, 0.5f);
             else target.addForce(-Mathf.Cos(angle) * 0.6f, -Mathf.Sin(angle) * 0.6f, 0.5f);
         }
 
         private static int CalculateImpactDamage(float damage, float armor)
         {
-            // 根据具体需求计算伤害，可以把魔法数字提取为常量或者参数化
+            // 根据具体需求计算伤害，可以把数字提取为常量或者参数化
             return (int)(damage * 0.4 + (int)(armor * 0.2));
         }
 
@@ -78,8 +78,8 @@ namespace K_mod
             if (a != null && a.isAlive() && a.attackTarget != null && a.attackTarget.isAlive())
             {
                 if (a.race.id != "orc")
-                { 
-                    HumanCavalry(pTarget, pTile); 
+                {
+                    HumanCavalry(pTarget, pTile);
                 }
                 else
                 {
@@ -162,9 +162,9 @@ namespace K_mod
                     a.goTo(a.attackTarget.currentTile, true, true);
                     a.tileTarget = a.attackTarget.currentTile;
                     a.addStatusEffect("charge");
-                    if(!a.hasStatus("effect_roar"))
+                    if (!a.hasStatus("effect_roar"))
                     {
-                        a.addStatusEffect("effect_roar",30f);
+                        a.addStatusEffect("effect_roar", 30f);
                     }
                     a.attackTarget.getHit((int)(a.stats[S.damage] * 0.6 + (int)(a.stats[S.armor] * 0.3)), true, AttackType.Block, a, true, false);
                     if (a.animationContainer != null)

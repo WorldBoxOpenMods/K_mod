@@ -228,7 +228,7 @@ public class K_harmony_actors
             float TDJL = Toolbox.DistTile(pTile, pActor.currentTile);
             if (pActor.hasStatus("effect_cavalry") && TDJL is > 4f)
             {
-                pActor.addStatusEffect("charge", 3f);
+                pActor.addStatusEffect("charge", 5f);
             }
             __result = BehResult.Continue;
             return;

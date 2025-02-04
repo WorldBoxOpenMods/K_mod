@@ -11,7 +11,7 @@ namespace K_mod
 	{
 		public override BehResult execute(Actor pActor)
 		{
-			Debug.Log("启动！");
+			// Debug.Log("启动！");
 
 			if (pActor.currentTile == null)
 			{
